@@ -447,6 +447,10 @@
     margin-top: 60px;
     flex-wrap: wrap;
 }
+#website-feature .container {
+  max-width: none;
+  padding: 0;
+}
 #website-feature .text-content .highlight-amount {
     font-size: 2.5rem; /* さらに大きく */
     font-weight: 800; /* 太文字に */
@@ -472,9 +476,7 @@
 
 #website-feature .iframe-container {
     flex: 1;
-    min-width: 300px;
-    /* 画面幅いっぱいに広がるようにmax-widthを削除 */
-    /* height: 400px; を削除し、アスペクト比で高さを制御 */
+    min-width: auto;
     border-radius: var(--border-radius);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     border: 5px solid var(--accent-color);
@@ -483,9 +485,11 @@
     /* レスポンシブ対応のための追加スタイル */
     position: relative; /* iframeを絶対配置するための基準 */
     width: 100%; /* 親要素の幅いっぱいに広げる */
+    max-width: 100%;
     padding-bottom: 0;
     height: 80vh;
-
+    margin: 0 auto;
+}
 #website-feature iframe {
     position: absolute; /* 親コンテナ (iframe-container) 内で絶対配置 */
     top: 0;
@@ -939,7 +943,11 @@
         /* Utility Classes */
         .text-center { text-align: center; }
         .text-primary { color: var(--primary-color); }
-
+        @media (min-width: 1400px) {
+         #website-feature .container {
+          padding: 0 100px;     /* 左右に余白を追加 */
+               }
+         }
         /* Responsive Design */
         @media (max-width: 992px) {
             h1 { font-size: 3.5rem; }
@@ -1059,12 +1067,17 @@
             #flow .flow-steps { flex-direction: column; align-items: center; gap: 30px; }
             #flow .flow-step { max-width: 90%; }
             #flow .flow-step::after { content: none; } /* 矢印を非表示 */
+            #website-feature .feature-content {
+    flex-direction: column;  /* テキストと iframe を縦並びに */
+    gap: 20px;               /* 要素間ギャップ */
+    padding: 0 15px;         /* 画面端の余白 */
+  }
+  #website-feature .iframe-container {
+    display: block;
+    height: 50vh;            /* ビューポート高さの半分 */
+    min-height: 300px;       /* 最低 300px は欲しい */
+  }
         }
-    @media (max-width: 768px) {
-    #website-feature .iframe-container {
-        height: 90vh; /* スマホではもっと高くする */
-    }
-}
         @media (max-width: 480px) {
             header .logo { font-size: 1.8rem; }
             #hero h1 { font-size: 2.5rem; }
