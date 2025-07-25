@@ -483,9 +483,8 @@
     /* レスポンシブ対応のための追加スタイル */
     position: relative; /* iframeを絶対配置するための基準 */
     width: 100%; /* 親要素の幅いっぱいに広げる */
-    padding-bottom: 56.25%; /* 16:9 のアスペクト比を維持 (高さ / 幅 * 100%) */
-    /* 例: 400px (元の高さ) / 550px (元の最大幅) = 約72.72% の場合は padding-bottom: 72.72%; */
-}
+    padding-bottom: 0;
+    height: 80vh;
 
 #website-feature iframe {
     position: absolute; /* 親コンテナ (iframe-container) 内で絶対配置 */
@@ -1061,6 +1060,11 @@
             #flow .flow-step { max-width: 90%; }
             #flow .flow-step::after { content: none; } /* 矢印を非表示 */
         }
+    @media (max-width: 768px) {
+    #website-feature .iframe-container {
+        height: 90vh; /* スマホではもっと高くする */
+    }
+}
         @media (max-width: 480px) {
             header .logo { font-size: 1.8rem; }
             #hero h1 { font-size: 2.5rem; }
