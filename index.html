@@ -428,61 +428,73 @@
             color: var(--text-color);
         }
 
-        /* Website Feature */
-        #website-feature {
-            background-color: var(--primary-color);
-            color: var(--white);
-            text-align: center;
-            padding: 120px 0;
-        }
-        #website-feature h2 {
-            color: var(--white);
-        }
+/* Website Feature */
+#website-feature {
+    background-color: var(--primary-color);
+    color: var(--white);
+    text-align: center;
+    padding: 120px 0;
+}
+#website-feature h2 {
+    color: var(--white);
+}
 
-        #website-feature .feature-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 80px;
-            margin-top: 60px;
-            flex-wrap: wrap;
-        }
-        #website-feature .text-content .highlight-amount {
-            font-size: 2.5rem; /* さらに大きく */
-            font-weight: 800; /* 太文字に */
-            color: var(--accent-color); /* 黄色で強調 */
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-            display: block; /* 独立した行に */
-            margin-top: 15px; /* 上部に余白 */
-            margin-bottom: 15px; /* 下部に余白 */
-            line-height: 1.2; /* 行の高さを調整 */
-        }
+#website-feature .feature-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+    margin-top: 60px;
+    flex-wrap: wrap;
+}
+#website-feature .text-content .highlight-amount {
+    font-size: 2.5rem; /* さらに大きく */
+    font-weight: 800; /* 太文字に */
+    color: var(--accent-color); /* 黄色で強調 */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    display: block; /* 独立した行に */
+    margin-top: 15px; /* 上部に余白 */
+    margin-bottom: 15px; /* 下部に余白 */
+    line-height: 1.2; /* 行の高さを調整 */
+}
 
-        #website-feature .text-content {
-            flex: 1;
-            min-width: 300px;
-            max-width: 550px;
-            text-align: left;
-        }
+#website-feature .text-content {
+    flex: 1;
+    min-width: 300px;
+    max-width: 550px;
+    text-align: left;
+}
 
-        #website-feature .text-content p {
-            font-size: 1.15rem;
-            opacity: 0.9;
-        }
+#website-feature .text-content p {
+    font-size: 1.15rem;
+    opacity: 0.9;
+}
 
-        #website-feature .image-content {
-            flex: 1;
-            min-width: 300px;
-            max-width: 550px;
-        }
+#website-feature .iframe-container {
+    flex: 1;
+    min-width: 300px;
+    /* 画面幅いっぱいに広がるようにmax-widthを削除 */
+    /* height: 400px; を削除し、アスペクト比で高さを制御 */
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 5px solid var(--accent-color);
+    overflow: hidden; /* iframeのスクロールバーを内側に */
 
-        #website-feature img {
-            max-width: 100%;
-            height: auto;
-            border-radius: var(--border-radius);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border: 5px solid var(--accent-color);
-        }
+    /* レスポンシブ対応のための追加スタイル */
+    position: relative; /* iframeを絶対配置するための基準 */
+    width: 100%; /* 親要素の幅いっぱいに広げる */
+    padding-bottom: 56.25%; /* 16:9 のアスペクト比を維持 (高さ / 幅 * 100%) */
+    /* 例: 400px (元の高さ) / 550px (元の最大幅) = 約72.72% の場合は padding-bottom: 72.72%; */
+}
+
+#website-feature iframe {
+    position: absolute; /* 親コンテナ (iframe-container) 内で絶対配置 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
 
         /* Guarantee Section */
         #guarantee {
