@@ -15,9 +15,6 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template('index.html')
-@app.route('/google458ff35c9a528e27.html')
-def google_verification():
-    return 'google-site-verification: google458ff35c9a528e27.html'
 
 @app.route('/send', methods=['POST'])
 def send():
