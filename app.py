@@ -15,6 +15,28 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template('index.html')
+@app.route('/robots.txt')
+def robots():
+    return Response("""User-agent: *
+Allow: /
+Sitemap: https://ato-ayg2.onrender.com/sitemap.xml
+""", mimetype='text/plain')
+
+@app.route('/sitemap.xml')
+def sitemap():
+    sitemap_xml = '''<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://ato-ayg2.onrender.com/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://ato-ayg2.onrender.com/about</loc>
+    <priority>0.8</priority>
+  </url>
+  <!-- 必要に応じて他ページも追加 -->
+</urlset>'''
+    return Response(sitemap_xml, mimetype='application/xml')
 
 @app.route('/send', methods=['POST'])
 def send():
