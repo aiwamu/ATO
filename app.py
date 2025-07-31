@@ -21,7 +21,9 @@ def robots():
 Allow: /
 Sitemap: https://ato-ayg2.onrender.com/sitemap.xml
 """, mimetype='text/plain')
-
+@app.route('/en')
+def index_en():
+    return render_template('index_en.html')
 @app.route('/sitemap.xml')
 def sitemap():
     sitemap_xml = '''<?xml version="1.0" encoding="UTF-8"?>
