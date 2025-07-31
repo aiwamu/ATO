@@ -72,5 +72,3 @@ def send():
     except Exception as e:
         return f"送信に失敗しました：{e}"
 
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5001, debug=True)
