@@ -17,10 +17,10 @@ def index():
     return render_template('index.html')
 @app.route('/robots.txt')
 def robots():
-    return Response("""User-agent: *
-Allow: /
-Sitemap: https://ato-ayg2.onrender.com/sitemap.xml
-""", mimetype='text/plain')
+    return Response(
+        "User-agent: *\nAllow: /\nSitemap: https://ato-ayg2.onrender.com/sitemap.xml",
+        mimetype='text/plain'
+    )
 @app.route('/en')
 def index_en():
     return render_template('index_en.html')
