@@ -16,11 +16,9 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 @app.route('/robots.txt')
-def robots():
-    return Response(
-        "User-agent: *\nAllow: /\nSitemap: https://ato-ayg2.onrender.com/sitemap.xml",
-        mimetype='text/plain'
-    )
+def robots_txt():
+    content = "User-agent: *\nAllow: /\nSitemap: https://ato-ayg2.onrender.com/sitemap.xml"
+    return Response(content, status=200, mimetype='text/plain; charset=utf-8')
 @app.route('/en')
 def index_en():
     return render_template('index_en.html')
