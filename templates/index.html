@@ -256,6 +256,8 @@ mark{background:var(--cap);color:var(--cap-ink);padding:0 .12em;border-radius:4p
 
 /* ---------- sections ---------- */
 section.sec{padding-block:88px 0}
+[id]{scroll-margin-top:calc(72px + env(safe-area-inset-top,0px))}
+@media (prefers-reduced-motion: no-preference){html{scroll-behavior:smooth}}
 .sec-head{display:flex;flex-direction:column;gap:12px;margin-bottom:40px;max-width:46em}
 .sec-head p.d{color:var(--muted)}
 
@@ -1010,6 +1012,38 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     req.then(function(){show('ok',m.ok);form.reset();},function(){show('err',m.err,true);})
        .then(function(){sub.disabled=false;});
   });
+
+  /* ---------- smooth anchor scroll ---------- */
+  (function(){
+    var busy=null;
+    function ease(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;}
+    function glide(target){
+      var start=window.pageYOffset;
+      var offset=parseFloat(getComputedStyle(target).scrollMarginTop)||0;
+      var end=Math.max(0,target.getBoundingClientRect().top+start-offset);
+      var dist=end-start; if(Math.abs(dist)<2)return;
+      var dur=Math.min(1300,Math.max(650,Math.abs(dist)*0.35));
+      var t0=null; if(busy)cancelAnimationFrame(busy);
+      var html=document.documentElement, prev=html.style.scrollBehavior; html.style.scrollBehavior='auto';
+      function step(ts){
+        if(t0===null)t0=ts;
+        var p=Math.min(1,(ts-t0)/dur);
+        window.scrollTo(0,start+dist*ease(p));
+        if(p<1){busy=requestAnimationFrame(step);} else {busy=null; html.style.scrollBehavior=prev;}
+      }
+      busy=requestAnimationFrame(step);
+    }
+    document.addEventListener('click',function(e){
+      var a=e.target.closest&&e.target.closest('a[href^="#"]');
+      if(!a||e.metaKey||e.ctrlKey||e.shiftKey)return;
+      var id=a.getAttribute('href').slice(1); if(!id)return;
+      var el=document.getElementById(id); if(!el)return;
+      e.preventDefault();
+      if(reduce){el.scrollIntoView();} else {glide(el);}
+      try{history.pushState(null,'','#'+id);}catch(err){}
+    });
+    ['wheel','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,function(){if(busy){cancelAnimationFrame(busy);busy=null;document.documentElement.style.scrollBehavior='';}},{passive:true});});
+  })();
 
   /* ---------- init ---------- */
   var saved=null; try{saved=localStorage.getItem('ato-lang');}catch(e){}
