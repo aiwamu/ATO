@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, Response
+from flask import Flask, render_template, request, Response, jsonify
 import smtplib
 from email.mime.text import MIMEText
 import os
@@ -17,21 +17,21 @@ def index():
     return render_template('index.html')
 @app.route('/robots.txt')
 def robots_txt():
-    content = "User-agent: *\nAllow: /\nSitemap: https://ato-ayg2.onrender.com/sitemap.xml"
+    content = "User-agent: *\nAllow: /\nSitemap: https://ato-sns.com/sitemap.xml"
     return Response(content, status=200, mimetype='text/plain; charset=utf-8')
 @app.route('/en')
 def index_en():
-    return render_template('index_en.html')
+    return render_template('index.html', lang='en')
 @app.route('/sitemap.xml')
 def sitemap():
     sitemap_xml = '''<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://ato-ayg2.onrender.com/</loc>
+    <loc>https://ato-sns.com/</loc>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://ato-ayg2.onrender.com/about</loc>
+    <loc>https://ato-sns.com/en</loc>
     <priority>0.8</priority>
   </url>
   <!-- 必要に応じて他ページも追加 -->
@@ -72,3 +72,44 @@ def send():
     except Exception as e:
         return f"送信に失敗しました：{e}"
 
+
+@app.route('/apply', methods=['POST'])
+def apply():
+    """LPの「Webで申し込む」フォーム。内容をGmail(EMAIL_USER)に送る。"""
+    data = request.get_json(silent=True) or request.form
+    if data.get('botcheck'):
+        return jsonify(ok=True)
+    name = (data.get('name') or '').strip()[:200]
+    email = (data.get('email') or '').strip()[:200]
+    kind = (data.get('type') or '').strip()[:100]
+    if not name or not email or '@' not in email or not kind:
+        return jsonify(ok=False, error='missing'), 400
+    account = (data.get('account') or '').strip()[:300]
+    message = (data.get('message') or '').strip()[:5000]
+    lang = (data.get('lang') or 'ja').strip()[:5]
+
+    body = f"""【ATO LP 無料診断の申し込み】
+
+お名前: {name}
+メールアドレス: {email}
+SNSアカウント: {account or '(未記入)'}
+どれに近いか: {kind}
+表示言語: {lang}
+
+▼ご相談内容:
+{message or '(未記入)'}
+"""
+    msg = MIMEText(body, 'plain', 'utf-8')
+    msg['Subject'] = f"【ATO LP】無料診断の申し込み：{name}"
+    msg['From'] = EMAIL_USER
+    msg['To'] = EMAIL_USER
+    msg['Reply-To'] = email
+
+    try:
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
+            server.login(EMAIL_USER, EMAIL_PASS)
+            server.send_message(msg)
+        return jsonify(ok=True)
+    except Exception:
+        app.logger.exception('apply mail failed')
+        return jsonify(ok=False, error='mail'), 500
