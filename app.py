@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request, Response, jsonify
+from flask import Flask, render_template, request, Response, jsonify, send_from_directory
 import smtplib
 from email.mime.text import MIMEText
 import os
+import re
 from dotenv import load_dotenv
 
 # .env 読み込み
@@ -15,6 +16,17 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template('index.html')
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static', 'icons'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
+@app.route('/google<token>.html')
+def google_verify(token):
+    """Google Search Console の所有権確認ファイル(リポジトリ直下に置いた googleXXXX.html)を返す。"""
+    if not re.fullmatch(r'[0-9A-Za-z]+', token):
+        return Response('Not found', status=404)
+    return send_from_directory(app.root_path, f'google{token}.html', mimetype='text/html')
+
 @app.route('/robots.txt')
 def robots_txt():
     content = "User-agent: *\nAllow: /\nSitemap: https://ato-sns.com/sitemap.xml"
