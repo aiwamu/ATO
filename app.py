@@ -13,6 +13,9 @@ EMAIL_PASS = os.getenv("EMAIL_PASS")
 
 app = Flask(__name__)
 
+# Googleカレンダーの予約ページ(無料アカウント診断)
+BOOKING_URL = "https://calendar.google.com/calendar/appointments/schedules/AcZssZ0jKTMGYPGyb66507pVwzRPx2s5_XclcQYeBKHBN3Z343iK8iJvjzYDvdHX6pccutsFwW_VcRIR"
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -31,6 +34,10 @@ def google_verify(token):
 def robots_txt():
     content = "User-agent: *\nAllow: /\nSitemap: https://ato-sns.com/sitemap.xml"
     return Response(content, status=200, mimetype='text/plain; charset=utf-8')
+@app.route('/book')
+def book():
+    return render_template('book.html', booking_url=BOOKING_URL)
+
 @app.route('/en')
 def index_en():
     return render_template('index.html', lang='en')
@@ -45,6 +52,10 @@ def sitemap():
   <url>
     <loc>https://ato-sns.com/en</loc>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ato-sns.com/book</loc>
+    <priority>0.7</priority>
   </url>
   <!-- 必要に応じて他ページも追加 -->
 </urlset>'''

@@ -415,6 +415,8 @@ section.sec{padding-block:88px 0}
 .final .kw{font-size:.95em}
 .final .btn-p{background:var(--cap);color:var(--cap-ink)}
 .final .btn-p .arr{background:var(--cap-ink);color:var(--cap)}
+.final .book-btn{border-color:rgba(255,255,255,.4);color:#fff;margin-top:-8px}
+.final .book-btn:hover{border-color:#fff}
 .handle{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:.9rem;color:var(--band-muted)}
 .handle code{font-family:var(--mono);font-size:.95rem;color:#fff;background:rgba(255,255,255,.1);padding:6px 10px;border-radius:6px;user-select:all}
 .copy{font:700 .72rem/1 var(--sans);letter-spacing:.08em;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:8px 12px;cursor:pointer}
@@ -499,8 +501,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       </a>
       <a class="btn btn-g" href="#plans"><span class="ja">料金を見る</span><span class="en">See plans</span></a>
     </div>
-    <p class="dm-note ja">Instagram <b>@atsupon_jp</b> にDMで <span class="kw">ATJP</span> と送るだけ。<a href="#contact">フォーム</a>からも申し込めます。</p>
-    <p class="dm-note en">DM <span class="kw">ATJP</span> to <b>@atsupon_jp</b> on Instagram, or use the <a href="#contact">form</a>.</p>
+    <p class="dm-note ja">Instagram <b>@atsupon_jp</b> にDMで <span class="kw">ATJP</span> と送るだけ。<a href="/book">カレンダーから直接予約</a>もできます。</p>
+    <p class="dm-note en">DM <span class="kw">ATJP</span> to <b>@atsupon_jp</b> on Instagram, or <a href="/book">book a time directly</a>.</p>
   </div>
 
   <div class="reel-col">
@@ -811,6 +813,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <span class="ja">InstagramでDMを送る</span><span class="en">Send a DM on Instagram</span>
         <span class="arr" aria-hidden="true">→</span>
       </a>
+      <a class="btn btn-g book-btn" href="/book"><span class="ja">カレンダーから日時を予約する</span><span class="en">Pick a time on the calendar</span></a>
       <div class="handle">
         <code id="handle">@atsupon_jp</code>
         <button type="button" class="copy" id="copyBtn">COPY</button>
