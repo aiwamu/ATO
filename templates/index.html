@@ -383,13 +383,18 @@ section.sec{padding-block:88px 0}
 .card-id .role{align-self:flex-start;font-size:.68rem;font-weight:800;letter-spacing:.12em;background:var(--cap);color:var(--cap-ink);padding:6px 9px;border-radius:4px}
 .card-id .big{font-weight:800;font-size:clamp(1.8rem,3.4vw,2.4rem);line-height:1.2;letter-spacing:.01em}
 .card-id .big small{display:block;font-size:.72rem;font-weight:700;letter-spacing:.2em;color:#C9D0F0;margin-top:8px}
+.card-meta{display:flex;flex-direction:column;gap:10px;padding-top:12px;border-top:1px solid rgba(255,255,255,.18)}
+.cm-row{display:flex;flex-direction:column;gap:6px}
+.cm-label{font-size:.62rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#C9D0F0}
+.loc{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.92rem}
+.loc svg{width:15px;height:15px;fill:var(--cap);flex:none}
 .langs-spoken{display:flex;gap:8px;flex-wrap:wrap}
 .langs-spoken span{font-size:.72rem;font-weight:700;border:1px solid rgba(255,255,255,.4);padding:5px 10px;border-radius:999px}
 .msg{font-size:1.1rem;line-height:1.95;font-weight:500;max-width:34em}
 .career{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid var(--line)}
 .career li{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);font-size:.96rem}
 .career li span:first-child{font-size:.68rem;font-weight:800;line-height:2.3;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
-@media (max-width:860px){.founder{grid-template-columns:1fr}.card-id{max-width:460px}.career li{grid-template-columns:1fr;gap:2px}}
+@media (max-width:860px){.founder{grid-template-columns:1fr}.card-id{max-width:460px;aspect-ratio:auto}.card-id img{height:auto;aspect-ratio:4/5}.card-id figcaption{position:static;background:var(--band);padding:22px}.career li{grid-template-columns:1fr;gap:2px}}
 
 /* ---------- faq ---------- */
 .faq{display:flex;flex-direction:column;border-top:1px solid var(--line);max-width:860px}
@@ -754,7 +759,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <figcaption>
         <span class="role"><span class="ja">代表</span><span class="en">FOUNDER</span></span>
         <p class="big"><span class="ja">岩村 篤</span><span class="en">Atsushi Iwamura</span><small><span class="ja">ATSUSHI IWAMURA</span><span class="en">岩村 篤</span></small></p>
-        <div class="langs-spoken"><span>日本語</span><span>English</span><span>Français</span><span>Bahasa Indonesia</span><span class="ta" lang="ta">தமிழ்</span></div>
+        <div class="card-meta">
+          <div class="cm-row"><span class="cm-label">Location</span><span class="loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><span class="ja">東京(日本)</span><span class="en">Tokyo, Japan</span></span></div>
+          <div class="cm-row"><span class="cm-label">Language</span><div class="langs-spoken"><span>日本語</span><span>English</span><span>Français</span><span>Bahasa Indonesia</span><span class="ta" lang="ta">தமிழ்</span></div></div>
+        </div>
       </figcaption>
     </figure>
     <div>
@@ -765,8 +773,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <p class="msg ja">日本には、まだ世界に知られていない良いものがたくさんあります。足りないのは魅力ではなく、届け方です。ロンドンと京都で国際関係を学び、国連やJICAで世界と関わってきた視点と、ショート動画で積み上げてきた数字で、あなたの「良いもの」を世界に届けます。</p>
       <p class="msg en">Japan is full of great things the world has not found yet. What is missing is not appeal but reach. With international relations studies in London and Kyoto, experience at the UN and JICA, and a track record in short-form video, I help your best work reach people overseas.</p>
       <ul class="career">
-        <li><span>Location</span><span class="ja">東京(日本)</span><span class="en">Tokyo, Japan</span></li>
-        <li><span>Language</span><span>日本語 / English / Français / Bahasa Indonesia / <span class="ta" lang="ta">தமிழ்</span></span></li>
         <li><span>Education</span><span class="ja">ロンドン大学 / 立命館大学 国際関係学部</span><span class="en">University of London / Ritsumeikan University, College of International Relations</span></li>
         <li><span>Career</span><span class="ja">国際連合(UNDP 国連開発計画 駐日代表事務所)</span><span class="en">United Nations (UNDP Representation Office in Tokyo)</span></li>
         <li><span>Career</span><span class="ja">JICA 国際協力機構(マレーシア事務所)</span><span class="en">JICA, Japan International Cooperation Agency (Malaysia Office)</span></li>
