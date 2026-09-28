@@ -3,17 +3,45 @@ import smtplib
 from email.mime.text import MIMEText
 import os
 import re
+import requests
 from dotenv import load_dotenv
 
 # .env 読み込み
 load_dotenv()
 
+# メール送信は Google Apps Script(GAS)の中継ウェブアプリ経由で行う。
+# Renderの無料プランはGmailへのSMTP送信がブロックされるため。
+# GAS_URL は Render の環境変数に設定。受信先は GAS 側の MAIL_TO で決まる。
+GAS_URL = os.getenv("GAS_URL")
+
+# (予備)GAS_URL が無い場合のみ Gmail SMTP で送る。Renderの有料プランで使う想定。
 EMAIL_USER = os.getenv("EMAIL_USER")
 EMAIL_PASS = os.getenv("EMAIL_PASS")
-# お問い合わせ・申し込みメールの受信先(Renderの環境変数 MAIL_TO があればそちらを優先)
 MAIL_TO = os.getenv("MAIL_TO", "atsushi.iwmr@gmail.com")
 
 app = Flask(__name__)
+
+
+def send_mail(subject, body, reply_to=''):
+    """フォームの内容をメールで送る。失敗したら例外を投げる。"""
+    if GAS_URL:
+        r = requests.post(GAS_URL, json={'subject': subject, 'body': body, 'replyTo': reply_to}, timeout=30)
+        r.raise_for_status()
+        result = r.json()
+        if not result.get('ok'):
+            raise RuntimeError(f"GAS error: {result.get('error')}")
+        return
+    if not EMAIL_USER or not EMAIL_PASS:
+        raise RuntimeError('メール送信の設定がありません(GAS_URL か EMAIL_USER/EMAIL_PASS を設定してください)')
+    msg = MIMEText(body, 'plain', 'utf-8')
+    msg['Subject'] = subject
+    msg['From'] = EMAIL_USER
+    msg['To'] = MAIL_TO
+    if reply_to:
+        msg['Reply-To'] = reply_to
+    with smtplib.SMTP_SSL('smtp.gmail.com', 465, timeout=30) as server:
+        server.login(EMAIL_USER, EMAIL_PASS)
+        server.send_message(msg)
 
 # Googleカレンダーの予約ページ(無料アカウント診断)
 BOOKING_URL = "https://calendar.google.com/calendar/appointments/schedules/AcZssZ0jKTMGYPGyb66507pVwzRPx2s5_XclcQYeBKHBN3Z343iK8iJvjzYDvdHX6pccutsFwW_VcRIR"
@@ -84,19 +112,12 @@ def send():
 {inquiry}
 """
 
-    msg = MIMEText(body)
-    msg['Subject'] = "【サイトからのお問い合わせ】"
-    msg['From'] = EMAIL_USER
-    msg['To'] = MAIL_TO
-    msg['Reply-To'] = email
-
     try:
-        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
-            server.login(EMAIL_USER, EMAIL_PASS)
-            server.send_message(msg)
+        send_mail("【サイトからのお問い合わせ】", body, email)
         return "送信が完了しました。ありがとうございました！"
-    except Exception as e:
-        return f"送信に失敗しました：{e}"
+    except Exception:
+        app.logger.exception('send mail failed')
+        return "送信に失敗しました。時間をおいて再度お試しください。"
 
 
 @app.route('/apply', methods=['POST'])
@@ -125,16 +146,8 @@ SNSアカウント: {account or '(未記入)'}
 ▼ご相談内容:
 {message or '(未記入)'}
 """
-    msg = MIMEText(body, 'plain', 'utf-8')
-    msg['Subject'] = f"【ATO LP】無料診断の申し込み：{name}"
-    msg['From'] = EMAIL_USER
-    msg['To'] = MAIL_TO
-    msg['Reply-To'] = email
-
     try:
-        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
-            server.login(EMAIL_USER, EMAIL_PASS)
-            server.send_message(msg)
+        send_mail(f"【ATO LP】無料診断の申し込み：{name}", body, email)
         return jsonify(ok=True)
     except Exception:
         app.logger.exception('apply mail failed')
