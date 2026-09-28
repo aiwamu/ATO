@@ -10,6 +10,8 @@ load_dotenv()
 
 EMAIL_USER = os.getenv("EMAIL_USER")
 EMAIL_PASS = os.getenv("EMAIL_PASS")
+# お問い合わせ・申し込みメールの受信先(Renderの環境変数 MAIL_TO があればそちらを優先)
+MAIL_TO = os.getenv("MAIL_TO", "atsushi.iwmr@gmail.com")
 
 app = Flask(__name__)
 
@@ -85,7 +87,8 @@ def send():
     msg = MIMEText(body)
     msg['Subject'] = "【サイトからのお問い合わせ】"
     msg['From'] = EMAIL_USER
-    msg['To'] = EMAIL_USER
+    msg['To'] = MAIL_TO
+    msg['Reply-To'] = email
 
     try:
         with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
@@ -98,7 +101,7 @@ def send():
 
 @app.route('/apply', methods=['POST'])
 def apply():
-    """LPの「Webで申し込む」フォーム。内容をGmail(EMAIL_USER)に送る。"""
+    """LPの「Webで申し込む」フォーム。内容をMAIL_TOに送る。"""
     data = request.get_json(silent=True) or request.form
     if data.get('botcheck'):
         return jsonify(ok=True)
@@ -125,7 +128,7 @@ SNSアカウント: {account or '(未記入)'}
     msg = MIMEText(body, 'plain', 'utf-8')
     msg['Subject'] = f"【ATO LP】無料診断の申し込み：{name}"
     msg['From'] = EMAIL_USER
-    msg['To'] = EMAIL_USER
+    msg['To'] = MAIL_TO
     msg['Reply-To'] = email
 
     try:
