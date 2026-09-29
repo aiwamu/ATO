@@ -128,7 +128,9 @@ def apply():
         return jsonify(ok=True)
     name = (data.get('name') or '').strip()[:200]
     email = (data.get('email') or '').strip()[:200]
-    kind = (data.get('type') or '').strip()[:100]
+    kind = (data.get('type') or '').strip()[:300]
+    company = (data.get('company') or '').strip()[:200]
+    department = (data.get('department') or '').strip()[:200]
     if not name or not email or '@' not in email or not kind:
         return jsonify(ok=False, error='missing'), 400
     account = (data.get('account') or '').strip()[:300]
@@ -138,16 +140,18 @@ def apply():
     body = f"""【ATO LP 無料診断の申し込み】
 
 お名前: {name}
+会社名・屋号: {company or '(未記入)'}
+所属部署: {department or '(未記入)'}
 メールアドレス: {email}
 SNSアカウント: {account or '(未記入)'}
-どれに近いか: {kind}
+ご相談したいこと: {kind}
 表示言語: {lang}
 
 ▼ご相談内容:
 {message or '(未記入)'}
 """
     try:
-        send_mail(f"【ATO LP】無料診断の申し込み：{name}", body, email)
+        send_mail(f"【ATO LP】無料診断の申し込み：{company + ' ' if company else ''}{name}", body, email)
         return jsonify(ok=True)
     except Exception:
         app.logger.exception('apply mail failed')
