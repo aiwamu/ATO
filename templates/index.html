@@ -5,16 +5,16 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 {% if lang == 'en' %}
 <title>ATO | Digital Marketing to Bring Japan to the World</title>
-<meta name="description" content="ATO helps Japanese businesses bring their culture, products and services to the world through digital marketing and short-form video in English and Japanese: planning, shooting, editing and posting. 100M+ total views. Start with a free account audit.">
+<meta name="description" content="ATO helps Japanese businesses bring their culture, products and services to the world: short-form social video in English and Japanese, multilingual websites, and cross-border e-commerce. 100M+ total views. Start with a free audit.">
 <meta property="og:title" content="ATO | Digital Marketing to Bring Japan to the World">
-<meta property="og:description" content="Take your Japan to the world's feed. Short-form video strategy for inbound and Japanese culture businesses. Free account audit.">
+<meta property="og:description" content="Bring your Japan to the world. Social video, multilingual websites and cross-border e-commerce for Japanese businesses. Free audit.">
 <meta property="og:url" content="https://ato-sns.com/en">
 <meta property="og:locale" content="en_US">
 {% else %}
 <title>ATO | 日本の魅力を世界に届けるデジタルマーケティング</title>
-<meta name="description" content="日本の文化や商品・サービスを世界に届けるデジタルマーケティング支援ATO。世界をマーケットにしたい事業者のために、英語×日本語字幕のショート動画で企画・撮影・編集・投稿まで伴走します。総再生1億回超の実績。まずは無料アカウント診断から。">
+<meta name="description" content="日本の文化や商品・サービスを世界に届けるデジタルマーケティング支援ATO。英語×日本語字幕のショート動画を軸にしたSNS運用から、多言語のWebサイト制作、越境ECまで伴走します。総再生1億回超の実績。まずは無料診断から。">
 <meta property="og:title" content="ATO | 日本の魅力を世界に届けるデジタルマーケティング">
-<meta property="og:description" content="日本の魅力を、世界のフィードへ。インバウンド・日本文化のためのSNS戦略・運用代行。無料アカウント診断受付中。">
+<meta property="og:description" content="日本の魅力を、世界へ。SNS運用・多言語Webサイト制作・越境ECで、海外のお客さまに届く仕組みをつくります。無料診断受付中。">
 <meta property="og:url" content="https://ato-sns.com/">
 <meta property="og:locale" content="ja_JP">
 {% endif %}
@@ -266,10 +266,12 @@ mark{background:var(--cap);color:var(--cap-ink);padding:0 .12em;border-radius:4p
 .fill .key.on,.no-js .fill .key{background-size:100% 32%}
 
 /* ---------- reach: pinned map story ---------- */
-.reach{position:relative;z-index:1;margin-inline:calc(-1*var(--pad));height:460vh}
+.reach{position:relative;z-index:1;margin-inline:calc(-1*var(--pad));height:540vh}
 .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
-.st-map{position:absolute;inset:0}
-.st-map canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.st-map{position:absolute;inset:0;will-change:transform}
+.st-map canvas,#rThr{position:absolute;inset:0;width:100%;height:100%;display:block}
+#rThr{z-index:1;pointer-events:none}
+.rm #rThr{display:none}
 #reacts{position:absolute;inset:0;pointer-events:none}
 .st-text{position:absolute;left:0;right:0;top:0;z-index:2;padding:calc(92px + env(safe-area-inset-top,0px)) var(--pad) 28px;pointer-events:none;background:linear-gradient(color-mix(in srgb,var(--bg) 88%,transparent) 62%,transparent)}
 .st-in{position:relative;max-width:1120px;margin-inline:auto}
@@ -307,7 +309,9 @@ mark{background:var(--cap);color:var(--cap-ink);padding:0 .12em;border-radius:4p
 .beat-ticks button.on:hover::before{background:var(--cap)}
 .beat-ticks button:focus-visible{outline:2px solid var(--cap);outline-offset:1px;border-radius:4px}
 .react{position:absolute;width:24px;height:24px;margin:-12px 0 0 -12px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.12);animation:float-up 1.6s cubic-bezier(.2,.8,.2,1) forwards}
-.react svg{width:13px;height:13px}
+.react svg{width:14px;height:14px}
+.react-badge{position:absolute;transform:translate(-50%,-50%);font:500 .66rem/1 var(--mono);letter-spacing:.04em;color:#10162E;background:#FFD21F;padding:4px 7px;border-radius:999px;white-space:nowrap;animation:badge-up 2s cubic-bezier(.2,.8,.2,1) forwards;box-shadow:0 6px 14px -6px rgba(0,0,0,.6)}
+@keyframes badge-up{0%{opacity:0;margin-top:0}15%{opacity:1;margin-top:-14px}80%{opacity:1}100%{opacity:0;margin-top:-52px}}
 @keyframes float-up{0%{opacity:0;transform:translate(0,0) scale(.4)}15%{opacity:1;transform:translate(var(--dx),-10px) scale(1.05)}100%{opacity:0;transform:translate(calc(var(--dx)*2),-58px) scale(.9)}}
 /* reduced motion: no pinning, the whole story at once */
 .rm .reach{height:auto;padding-block:90px 60px}
@@ -320,7 +324,7 @@ mark{background:var(--cap);color:var(--cap-ink);padding:0 .12em;border-radius:4p
 .rm .st-map{position:relative;aspect-ratio:2.3;max-width:100%;margin-block:24px}
 .rm .count{opacity:1;transform:none}
 @media (max-width:860px){
-  .reach{height:440vh}
+  .reach{height:520vh}
   .st-text{padding-top:calc(84px + env(safe-area-inset-top,0px))}
   .beats{min-height:8.6em}
   .rm .st-map{aspect-ratio:1}
@@ -421,6 +425,19 @@ section.sec{padding-block:112px 0}
 .save svg{width:12px;height:12px;fill:#10162E}
 @keyframes pulse{50%{transform:scale(1.18)}}
 
+/* ---------- services ---------- */
+.svc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.svc article{position:relative;display:flex;flex-direction:column;gap:12px;padding:26px 22px 24px;border:1px solid var(--line);border-radius:18px;background:color-mix(in srgb,var(--surface) 55%,transparent);transition:border-color .3s,transform .3s}
+.svc article:hover{border-color:var(--cap);transform:translateY(-3px)}
+.svc .ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--cap);color:var(--cap-ink)}
+.svc .ic svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.svc .lbl{margin-top:4px;font:500 .68rem/1 var(--mono);letter-spacing:.14em;color:var(--muted)}
+.svc h3{font-size:1.14rem;line-height:1.45}
+.svc p{font-size:.92rem;color:var(--muted)}
+.svc .main-tag{position:absolute;top:20px;right:18px;font-size:.64rem;font-weight:800;letter-spacing:.08em;border:1px solid var(--cap);color:var(--cap);padding:4px 9px;border-radius:999px}
+@media (max-width:1000px){.svc{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.svc{grid-template-columns:minmax(0,1fr)}}
+
 /* ---------- flow ---------- */
 .flow{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-top:1px solid var(--line)}
 .flow li{display:grid;grid-template-columns:72px minmax(0,1fr);gap:18px;padding:26px 0;border-bottom:1px solid var(--line);align-items:baseline}
@@ -500,6 +517,9 @@ section.sec{padding-block:112px 0}
 .field input:focus,.field textarea:focus{outline:none;border-color:var(--brand);background:var(--surface)}
 .field textarea{min-height:108px;resize:vertical}
 fieldset.field{border:0;margin:0;padding:0}
+.field-row{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:12px}
+.hint-t{font-size:.74rem;color:var(--muted);line-height:1.5}
+@media (max-width:520px){.field-row{grid-template-columns:minmax(0,1fr);gap:16px}}
 .opts{display:flex;flex-wrap:wrap;gap:8px}
 .opts label{position:relative;font-size:.86rem;font-weight:600;cursor:pointer}
 .opts input{position:absolute;opacity:0;pointer-events:none}
@@ -543,8 +563,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
 <nav class="nav" aria-label="Main">
   <div class="wrap nav-in">
-    <a class="logo" href="#top"><b>AT<i>O</i></b><small>INBOUND SNS</small></a>
+    <a class="logo" href="#top"><b>AT<i>O</i></b><small>JAPAN TO THE WORLD</small></a>
     <div class="nav-links">
+      <a href="#services"><span class="ja">サービス</span><span class="en">Services</span></a>
       <a href="#why"><span class="ja">強み</span><span class="en">Why ATO</span></a>
       <a href="#flow"><span class="ja">流れ</span><span class="en">Process</span></a>
       <a href="#founder"><span class="ja">代表</span><span class="en">Founder</span></a>
@@ -560,18 +581,18 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 <header class="hero wrap" id="top" data-tone="day">
   <div class="hero-copy">
     <p class="eyebrow"><span class="rec" aria-hidden="true"></span>
-      <span class="ja">インバウンド・日本文化のためのSNS運用代行</span>
-      <span class="en">Social media for inbound &amp; Japanese culture</span>
+      <span class="ja">SNS・Web・ECで、日本の魅力を世界へ</span>
+      <span class="en">Social, web and e-commerce for Japan’s best</span>
     </p>
     <h1>
       <span class="ja"><span class="line"><span>日本の魅力を、</span></span><span class="line"><span><mark>世界のフィード</mark>へ。</span></span></span>
       <span class="en"><span class="line"><span>Put your Japan</span></span><span class="line"><span>in the <mark>world's feed.</mark></span></span></span>
     </h1>
-    <p class="lead ja">旅館、酒蔵、伝統工芸、飲食店。海外の人に届けたい事業者のために、<strong>企画・撮影・編集・投稿まで</strong>ショート動画でまるごと伴走します。</p>
-    <p class="lead en">Ryokan, sake breweries, craft studios, restaurants. We plan, shoot, edit and post <strong>short-form video that reaches travelers</strong> before they book their trip to Japan.</p>
+    <p class="lead ja">旅館、酒蔵、伝統工芸、飲食店。海外のお客さまに届けたい事業者のために、<strong>ショート動画を軸にしたSNS運用から、多言語のWebサイト制作、越境ECまで</strong>。世界に届く仕組みをまるごとつくります。</p>
+    <p class="lead en">Ryokan, sake breweries, craft studios, restaurants. <strong>From short-form social video to multilingual websites and cross-border e-commerce</strong>, we build everything it takes to reach customers around the world.</p>
     <div class="ctas">
       <a class="btn btn-p" href="https://ig.me/m/atsupon_jp" target="_blank" rel="noopener">
-        <span class="ja">無料でアカウント診断を受ける</span><span class="en">Get a free account audit</span>
+        <span class="ja">無料診断を受ける</span><span class="en">Get a free audit</span>
         <span class="arr" aria-hidden="true">→</span>
       </a>
       <a class="btn btn-g" href="#story"><span class="ja">世界への届け方を見る</span><span class="en">See how it travels</span></a>
@@ -671,9 +692,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <canvas id="rFx" aria-hidden="true"></canvas>
       <div id="reacts" aria-hidden="true"></div>
     </div>
+    <canvas id="rThr" aria-hidden="true"></canvas>
     <div class="st-text">
       <div class="st-in">
-        <p class="hud"><span class="live" aria-hidden="true"></span><span id="hudTxt">TOKYO → WORLD</span></p>
+        <p class="hud"><span class="live" aria-hidden="true"></span><span id="hudTxt">TOKYO, JAPAN</span></p>
         <div class="beats">
           <div class="beat on" id="beat1">
             <h2><span class="ja"><span class="nb">日本には、</span><span class="nb">世界がまだ知らない</span><span class="nb">一流がある。</span></span><span class="en">Japan is full of world-class things the world has yet to find.</span></h2>
@@ -683,7 +705,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           </div>
           <div class="beat">
             <h2><span class="ja"><span class="nb">海の向こうで、</span><span class="nb">誰かが手を止める。</span></span><span class="en">Across the ocean, someone stops scrolling.</span></h2>
-            <p><span class="ja">いいねを押して、コメントして、旅行の前に保存する。</span><span class="en">They tap like, leave a comment, and save it for their trip.</span></p>
+            <p><span class="ja">いいね、コメント、シェア、保存。世界中から反応が返ってくる。</span><span class="en">Likes, comments, shares and saves come back from all over the world.</span></p>
+          </div>
+          <div class="beat">
+            <h2><span class="ja"><span class="nb">気に入ったものは、</span><span class="nb">海をこえて届く。</span></span><span class="en">What they love ships across the ocean.</span></h2>
+            <p><span class="ja">多言語のWebサイトと越境ECで、見つけてもらうところから買ってもらうところまでをつなぐ。</span><span class="en">Multilingual websites and cross-border e-commerce connect being found with being bought.</span></p>
           </div>
           <div class="beat">
             <h2><span class="ja"><span class="nb">そして今度は、</span><span class="nb">世界が日本に</span><span class="nb">やってくる。</span></span><span class="en">Then the world comes to Japan.</span></h2>
@@ -705,9 +731,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <div class="beat-nav">
           <p class="bn-hint" id="bnHint"><span class="ja">スクロールで次へ</span><span class="en">Scroll for next</span><i aria-hidden="true">↓</i></p>
           <div class="bn-row">
-            <span class="bn-count" aria-hidden="true"><b id="bnNow">1</b> / 4</span>
+            <span class="bn-count" aria-hidden="true"><b id="bnNow">1</b> / 5</span>
             <div class="beat-ticks" id="beatTicks">
-              <button type="button" class="on" data-scene="0" aria-label="シーン1へ"></button><button type="button" data-scene="1" aria-label="シーン2へ"></button><button type="button" data-scene="2" aria-label="シーン3へ"></button><button type="button" data-scene="3" aria-label="シーン4へ"></button>
+              <button type="button" class="on" data-scene="0" aria-label="シーン1へ"></button><button type="button" data-scene="1" aria-label="シーン2へ"></button><button type="button" data-scene="2" aria-label="シーン3へ"></button><button type="button" data-scene="3" aria-label="シーン4へ"></button><button type="button" data-scene="4" aria-label="シーン5へ"></button>
             </div>
           </div>
         </div>
@@ -717,6 +743,46 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 </section>
 
 <main class="wrap">
+
+  <section class="sec" id="services" data-tone="night">
+    <div class="sec-head">
+      <p class="kicker" data-knot>What we do</p>
+      <h2><span class="ja"><span class="nb">SNSだけじゃない。</span><span class="nb">世界に届く仕組みを、</span><span class="nb">まるごと。</span></span><span class="en">More than social media. Everything it takes to reach the world.</span></h2>
+      <p class="d ja">日本の魅力を世界に届けるために、ショート動画を軸にしたSNS運用から、多言語のWebサイト、越境ECまで。必要なものを組み合わせてお手伝いします。</p>
+      <p class="d en">To bring Japan to the world, we combine short-form social video with multilingual websites and cross-border e-commerce, choosing what your business needs.</p>
+    </div>
+    <div class="svc">
+      <article>
+        <span class="main-tag"><span class="ja">メイン</span><span class="en">CORE</span></span>
+        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.2"/><path d="M10.8 9.3v5.4l4.2-2.7z"/></svg></span>
+        <span class="lbl">SNS</span>
+        <h3><span class="ja">SNS運用・ショート動画</span><span class="en">Social media &amp; short video</span></h3>
+        <p class="ja">英語で話し、日本語字幕で届けるショート動画を軸に、企画・撮影・編集・投稿・分析まで伴走します。</p>
+        <p class="en">Short-form video spoken in English with Japanese subtitles. We plan, shoot, edit, post and analyze with you.</p>
+      </article>
+      <article>
+        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.2"/><path d="M3 8.6h18"/><path d="M6.4 6.3h.01M9 6.3h.01"/><path d="M8 13.5h8M8 16.5h5"/></svg></span>
+        <span class="lbl">WEB</span>
+        <h3><span class="ja">Webサイト制作(多言語)</span><span class="en">Multilingual websites</span></h3>
+        <p class="ja">海外のお客さまが迷わない、英語をはじめとした多言語のサイトを制作。予約や問い合わせまでの導線も設計します。</p>
+        <p class="en">Sites in English and other languages that overseas visitors can find their way around, with a clear path to booking or getting in touch.</p>
+      </article>
+      <article>
+        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 7.5 12 3l8.5 4.5v9L12 21l-8.5-4.5z"/><path d="M3.5 7.5 12 12l8.5-4.5M12 12v9"/></svg></span>
+        <span class="lbl">EC</span>
+        <h3><span class="ja">越境EC・ECサイト</span><span class="en">Cross-border e-commerce</span></h3>
+        <p class="ja">海外に商品を売るためのECサイトの立ち上げから、商品ページの多言語化、SNSからの集客までを支援します。</p>
+        <p class="en">From launching an online store for overseas buyers to translating product pages and bringing in shoppers from social media.</p>
+      </article>
+      <article>
+        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.6 8.4-2.1 5.1-5.1 2.1 2.1-5.1z"/></svg></span>
+        <span class="lbl">STRATEGY</span>
+        <h3><span class="ja">海外展開の戦略・コンサルティング</span><span class="en">Global strategy &amp; consulting</span></h3>
+        <p class="ja">どの国の、誰に、何を、どう届けるか。国際協力の現場で培った視点で、海外展開の道筋を一緒に描きます。</p>
+        <p class="en">Which country, which customers, what to offer and how. We map out your path overseas with a view shaped by international development work.</p>
+      </article>
+    </div>
+  </section>
 
   <section class="sec" id="why" data-tone="night">
     <div class="sec-head">
@@ -738,9 +804,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       </article>
       <article>
         <span class="tag" data-knot>ONE-STOP</span>
-        <h3><span class="ja">企画から投稿まで、まるごと</span><span class="en">From idea to posting</span></h3>
-        <p class="ja">台本、撮影、編集、日英の字幕、投稿、分析まで。忙しい現場の手を止めずに、発信を続けられます。</p>
-        <p class="en">Scripts, shooting, editing, bilingual subtitles, posting and analytics. Your team keeps working while your account keeps growing.</p>
+        <h3><span class="ja">SNSからWeb・ECまで、まるごと</span><span class="en">From social to web and e-commerce</span></h3>
+        <p class="ja">動画の台本・撮影・編集・投稿から、多言語サイトやECの制作まで。窓口ひとつで、見つけてもらうところから買ってもらうところまでをつなげます。</p>
+        <p class="en">Scripts, shooting, editing and posting, plus multilingual sites and online stores. One team connects being discovered with being bought.</p>
       </article>
     </div>
   </section>
@@ -816,10 +882,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     </div>
     <ol class="flow">
       <li><div class="n"><b data-knot>01</b><i></i></div><div><h3><span class="ja">DMかフォームで申し込み</span><span class="en">DM or apply online</span></h3><p class="ja">@atsupon_jp に「ATJP」と送るか、このページのフォームから。</p><p class="en">Send “ATJP” to @atsupon_jp, or use the form on this page.</p></div></li>
-      <li><div class="n"><b data-knot>02</b><i></i></div><div><h3><span class="ja">無料アカウント診断</span><span class="en">Free audit</span></h3><p class="ja">30分のオンライン面談で、課題と伸びしろをお伝えします。</p><p class="en">A 30-minute online call on what to fix and where to grow.</p></div></li>
+      <li><div class="n"><b data-knot>02</b><i></i></div><div><h3><span class="ja">無料診断</span><span class="en">Free audit</span></h3><p class="ja">30分のオンライン面談で、課題と伸びしろをお伝えします。</p><p class="en">A 30-minute online call on what to fix and where to grow.</p></div></li>
       <li><div class="n"><b data-knot>03</b><i></i></div><div><h3><span class="ja">ご提案・お見積り</span><span class="en">Proposal</span></h3><p class="ja">目標とご予算に合わせたプランをご提案します。</p><p class="en">A plan and quote built around your goals and budget.</p></div></li>
       <li><div class="n"><b data-knot>04</b><i></i></div><div><h3><span class="ja">ご契約</span><span class="en">Agreement</span></h3><p class="ja">内容にご納得いただいてからスタートします。</p><p class="en">We begin once everything is agreed.</p></div></li>
-      <li><div class="n"><b data-knot>05</b><i></i></div><div><h3><span class="ja">運用スタート</span><span class="en">Launch</span></h3><p class="ja">企画・撮影・編集・投稿。毎月の数字を見て改善します。</p><p class="en">Plan, shoot, edit, post, then improve from each month's numbers.</p></div></li>
+      <li><div class="n"><b data-knot>05</b><i></i></div><div><h3><span class="ja">スタート</span><span class="en">Launch</span></h3><p class="ja">SNS運用や、サイト・ECの制作を進めます。毎月の数字を見て改善します。</p><p class="en">We run your social accounts or build your site and store, then improve from each month's numbers.</p></div></li>
     </ol>
   </section>
 
@@ -868,6 +934,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <p class="a en">Not at all! We run the free audit because we want to cheer on everyone taking their work to the world. Take the ideas from your audit and try them right away. If your numbers move, we would love to hear about it. And whenever you want to go further, we are here. Let's build something the world will see, together!</p>
       </details>
       <details>
+        <summary><span><span class="ja">SNS以外もお願いできますか？</span><span class="en">Can you help with more than social media?</span></span><span class="pm" aria-hidden="true"></span></summary>
+        <p class="a ja">はい、できます。多言語のWebサイト制作や越境ECの立ち上げ、海外展開の戦略づくりもお手伝いします。SNSと組み合わせると、見つけてもらうところから買ってもらうところまでを一本の流れにできます。</p>
+        <p class="a en">Yes. We also build multilingual websites, launch cross-border online stores and help plan your overseas strategy. Paired with social media, it all becomes one path from being found to being bought.</p>
+      </details>
+      <details>
         <summary><span><span class="ja">東京以外でも対応できますか？</span><span class="en">Do you work outside Tokyo?</span></span><span class="pm" aria-hidden="true"></span></summary>
         <p class="a ja">コンサルティングはオンラインで全国対応しています。撮影は場所と日程をご相談ください。</p>
         <p class="a en">Consulting is online and available nationwide. For shoots, tell us the location and dates.</p>
@@ -887,8 +958,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     <div class="final-l">
       <p class="kicker" data-knot>Free audit</p>
       <h2><span class="ja"><span class="nb">次は、</span><span class="nb">あなたの番です。</span></span><span class="en">You’re next.</span></h2>
-      <p class="ja">まずは30分の無料診断から。今のアカウントを見て、海外に届くために何を変えればいいかをお伝えします。InstagramのDMで <span class="kw">ATJP</span> と送るか、フォームからお申し込みください。</p>
-      <p class="en">Start with a free 30-minute audit. We will show you what to change so your account reaches people overseas. DM <span class="kw">ATJP</span> on Instagram, or use the form.</p>
+      <p class="ja">まずは30分の無料診断から。SNS・Webサイト・ECの今を見て、海外に届くために何を変えればいいかをお伝えします。InstagramのDMで <span class="kw">ATJP</span> と送るか、フォームからお申し込みください。</p>
+      <p class="en">Start with a free 30-minute audit of your social accounts, website or online store. We will show you what to change to reach people overseas. DM <span class="kw">ATJP</span> on Instagram, or use the form.</p>
       <a class="btn btn-p" href="https://ig.me/m/atsupon_jp" target="_blank" rel="noopener" data-thread-end>
         <span class="ja">InstagramでDMを送る</span><span class="en">Send a DM on Instagram</span>
         <span class="arr" aria-hidden="true">→</span>
@@ -908,6 +979,17 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <label for="f-name"><span class="ja">お名前</span><span class="en">Name</span><em>*</em></label>
         <input id="f-name" name="name" type="text" autocomplete="name" required>
       </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="f-company"><span class="ja">会社名・屋号</span><span class="en">Company or business name</span><em>*</em></label>
+          <input id="f-company" name="company" type="text" autocomplete="organization" required>
+          <span class="hint-t"><span class="ja">個人の方は屋号かお名前でOKです。</span><span class="en">Working solo? Your business name or your name is fine.</span></span>
+        </div>
+        <div class="field">
+          <label for="f-dept"><span class="ja">所属部署</span><span class="en">Department</span><span class="opt ja">(任意)</span><span class="opt en">(optional)</span></label>
+          <input id="f-dept" name="department" type="text" autocomplete="organization-title">
+        </div>
+      </div>
       <div class="field">
         <label for="f-email"><span class="ja">メールアドレス</span><span class="en">Email</span><em>*</em></label>
         <input id="f-email" name="email" type="email" autocomplete="email" required>
@@ -917,12 +999,14 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <input id="f-account" name="account" type="text" placeholder="@your_account">
       </div>
       <fieldset class="field">
-        <legend><span class="ja">どれに近いですか？</span><span class="en">Which fits you best?</span><em>*</em></legend>
+        <legend><span class="ja">ご相談したいこと(複数選べます)</span><span class="en">What can we help with? (choose any)</span><em>*</em></legend>
         <div class="opts">
-          <label><input type="radio" id="f-type-biz" name="type" value="事業のSNSを伸ばしたい" required><span class="chip"><span class="ja">事業のSNSを伸ばしたい</span><span class="en">Grow my business account</span></span></label>
-          <label><input type="radio" id="f-type-me" name="type" value="個人のアカウントを伸ばしたい"><span class="chip"><span class="ja">個人のアカウントを伸ばしたい</span><span class="en">Grow my personal account</span></span></label>
-          <label><input type="radio" id="f-type-collab" name="type" value="取材・コラボの相談"><span class="chip"><span class="ja">取材・コラボの相談</span><span class="en">Interview or collab</span></span></label>
-          <label><input type="radio" id="f-type-other" name="type" value="その他"><span class="chip"><span class="ja">その他</span><span class="en">Other</span></span></label>
+          <label><input type="checkbox" id="f-type-sns" name="type" value="SNS運用・ショート動画"><span class="chip"><span class="ja">SNS運用・ショート動画</span><span class="en">Social media &amp; video</span></span></label>
+          <label><input type="checkbox" id="f-type-web" name="type" value="Webサイト制作"><span class="chip"><span class="ja">Webサイト制作</span><span class="en">Website</span></span></label>
+          <label><input type="checkbox" id="f-type-ec" name="type" value="越境EC・ECサイト"><span class="chip"><span class="ja">越境EC・ECサイト</span><span class="en">E-commerce</span></span></label>
+          <label><input type="checkbox" id="f-type-strategy" name="type" value="海外展開の戦略・コンサル"><span class="chip"><span class="ja">海外展開の戦略・コンサル</span><span class="en">Global strategy</span></span></label>
+          <label><input type="checkbox" id="f-type-collab" name="type" value="取材・コラボの相談"><span class="chip"><span class="ja">取材・コラボの相談</span><span class="en">Interview or collab</span></span></label>
+          <label><input type="checkbox" id="f-type-other" name="type" value="その他"><span class="chip"><span class="ja">その他</span><span class="en">Other</span></span></label>
         </div>
       </fieldset>
       <div class="field">
@@ -937,7 +1021,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   </div>
 </section>
 <footer>
-  <div class="wrap"><span>© 2026 ATO — Inbound SNS Studio</span><span>Tokyo, Japan</span></div>
+  <div class="wrap"><span>© 2026 ATO — Japan to the World</span><span>Tokyo, Japan</span></div>
 </footer>
 
 </div>
@@ -1067,10 +1151,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   /* ---------- form ---------- */
   var form=$('applyForm'), st=$('formStatus'), sub=$('submitBtn');
   var MSG={
-    ja:{need:'お名前・メールアドレス・「どれに近いですか？」を入力してください。',mail:'メールアドレスの形式を確認してください。',sending:'送信中…',
+    ja:{need:'お名前・会社名・メールアドレス・「ご相談したいこと」を入力してください。',mail:'メールアドレスの形式を確認してください。',sending:'送信中…',
         ok:'送信しました！内容を確認して、メールでご連絡します。少しだけお待ちください。',
         err:'送信できませんでした。お手数ですが、InstagramのDMで「ATJP」と送ってください。',dm:'InstagramでDMを送る →'},
-    en:{need:'Please fill in your name, email and which option fits you.',mail:'Please check your email address.',sending:'Sending…',
+    en:{need:'Please fill in your name, company, email and what we can help with.',mail:'Please check your email address.',sending:'Sending…',
         ok:'Sent! We will get back to you by email soon.',
         err:'We could not send your request. Please DM “ATJP” to @atsupon_jp on Instagram instead.',dm:'Send a DM on Instagram →'}
   };
@@ -1081,12 +1165,12 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   }
   form.addEventListener('submit',function(e){
     e.preventDefault();
-    var m=MSG[lang], name=$('f-name').value.trim(), email=$('f-email').value.trim(), type=form.querySelector('input[name="type"]:checked');
-    if(!name||!email||!type){show('err',m.need);return;}
+    var m=MSG[lang], name=$('f-name').value.trim(), company=$('f-company').value.trim(), email=$('f-email').value.trim(), types=[].slice.call(form.querySelectorAll('input[name="type"]:checked')).map(function(x){return x.value;});
+    if(!name||!company||!email||!types.length){show('err',m.need);return;}
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){show('err',m.mail);$('f-email').focus();return;}
     if($('f-bot').checked)return;
     sub.disabled=true; show('ok',m.sending);
-    var payload={name:name,email:email,account:$('f-account').value.trim(),type:type.value,message:$('f-msg').value.trim(),lang:lang};
+    var payload={name:name,company:company,department:$('f-dept').value.trim(),email:email,account:$('f-account').value.trim(),type:types.join('、'),message:$('f-msg').value.trim(),lang:lang};
     var req=fetch('/apply',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)})
         .then(function(r){return r.json().then(function(j){if(!r.ok||!j.ok)throw new Error('failed');});});
     req.then(function(){show('ok',m.ok);form.reset();},function(){show('err',m.err,true);})
@@ -1269,49 +1353,59 @@ window.ATO_MAP={step:1.8,latTop:76,latBot:-54,lon0:-40.0,cols:200,rows:73,hex:["
 
   /* ---------- the map story ---------- */
   var MAP=window.ATO_MAP;
-  var box=$('stMap'), cD=$('rDots'), cF=$('rFx'), gD=cD.getContext('2d'), gF=cF.getContext('2d'), reactsEl=$('reacts');
+  var box=$('stMap'), cD=$('rDots'), cF=$('rFx'), cT=$('rThr'), gD=cD.getContext('2d'), gF=cF.getContext('2d'), gT=cT.getContext('2d'), reactsEl=$('reacts');
   var stText=document.querySelector('.st-text'), stFoot=document.querySelector('.st-foot');
   var beats=[].slice.call(document.querySelectorAll('.beat')), ticks=[].slice.call(document.querySelectorAll('#beatTicks button')), bnNow=$('bnNow');
   var countEl=$('count'), bigJa=document.querySelector('#countBig .ja'), bigEn=document.querySelector('#countBig .en'), hudTxt=$('hudTxt');
   /* scenes: scrolling picks the scene, time plays it, so nothing is skipped */
-  var ZONES=[.2,.45,.7,.93], STOP=[0,.32,.57,.82], TARGET=[.12,.46,.6,.86,1], DUR=[1,2.6,1.8,2.4,.9], scene=0;
+  var NS=beats.length;
+  var ZONES=[.17,.36,.55,.74,.93], STOP=[0,.25,.44,.63,.82], TARGET=[.10,.34,.52,.72,.90,1], DUR=[1.2,2.8,2.2,2.6,2.6,.9], scene=0;
+  var HUD=['TOKYO, JAPAN','TOKYO → WORLD','TOKYO → WORLD','SHIPPING → WORLD','WORLD → TOKYO'];
   function sceneFor(p){var sc=0; for(var i=0;i<ZONES.length;i++){if(p>=ZONES[i])sc=i+1;} return sc;}
   function setScene(sc){
-    var b=Math.min(sc,3);
+    var b=Math.min(sc,NS-1);
     beats.forEach(function(el,k){el.classList.toggle('on',k===b);});
     ticks.forEach(function(t,k){t.classList.toggle('on',k<=b); if(k===b)t.setAttribute('aria-current','step'); else t.removeAttribute('aria-current');});
     bnNow.textContent=String(b+1);
-    hudTxt.textContent=b===3?'WORLD → TOKYO':'TOKYO → WORLD';
+    hudTxt.textContent=HUD[b];
   }
   function goScene(k){
     var y=reachSec.getBoundingClientRect().top+window.pageYOffset+STOP[k]*(reachSec.offsetHeight-window.innerHeight);
     window.scrollTo({top:Math.round(y)+(k?2:0),behavior:reduce?'auto':'smooth'});
   }
   ticks.forEach(function(t){t.addEventListener('click',function(){goScene(+t.getAttribute('data-scene'));});});
+
   var ORIGIN={lat:35.68,lon:139.69};
   var CITIES=[
-    {lat:13.75,lon:100.5},{lat:34.05,lon:-118.24},{lat:51.51,lon:-0.13},{lat:-33.87,lon:151.21},
-    {lat:3.14,lon:101.69},{lat:40.71,lon:-74.0},{lat:25.2,lon:55.27},{lat:21.31,lon:-157.86},
-    {lat:48.86,lon:2.35},{lat:-6.2,lon:106.85},{lat:-23.55,lon:-46.63},{lat:13.08,lon:80.27}
-  ];
-  var land=[];
+    [25.03,121.56],[22.32,114.17],[31.23,121.47],[14.6,120.98],[13.75,100.5],[10.82,106.63],[1.35,103.82],[3.14,101.69],[-6.2,106.85],
+    [28.61,77.21],[19.08,72.88],[13.08,80.27],[25.2,55.27],[-33.87,151.21],[-37.81,144.96],[-36.85,174.76],[21.31,-157.86],
+    [51.51,-0.13],[48.86,2.35],[52.52,13.4],[40.42,-3.7],[41.9,12.5],[41.0,28.98],[59.33,18.07],[30.04,31.24],[-1.29,36.82],[-26.2,28.05],
+    [49.28,-123.12],[37.77,-122.42],[34.05,-118.24],[41.88,-87.63],[40.71,-74.0],[43.65,-79.38],[19.43,-99.13],[-23.55,-46.63],[-34.6,-58.38],[-12.05,-77.04]
+  ].map(function(c){return {lat:c[0],lon:c[1]};});
+  var seed=11; function rand(){seed=(seed*16807)%2147483647; return (seed-1)/2147483646;}
+  function shuffled(n){var a=[]; for(var i=0;i<n;i++)a.push(i); for(var j=n-1;j>0;j--){var k=Math.floor(rand()*(j+1)),t=a[j];a[j]=a[k];a[k]=t;} return a;}
+  var OUT=shuffled(CITIES.length).map(function(ci,k){return {c:CITIES[ci],s:.14+k*(.16/CITIES.length),d:.05};});
+  var BOXW=shuffled(CITIES.length).slice(0,18).map(function(ci,k){return {c:CITIES[ci],s:.53+k*.0072,d:.06,seed:rand()};});
+  var INW=shuffled(CITIES.length).slice(0,22).map(function(ci,k){return {c:CITIES[ci],s:.73+k*.0055,d:.05};});
+
+  var land=[], jpList=[];
   for(var r=0;r<MAP.rows;r++){
     var hex=MAP.hex[r], c=0;
     for(var i=0;i<hex.length;i++){
       var nib=parseInt(hex[i],16);
       for(var b=3;b>=0;b--){
-        if(c<MAP.cols&&(nib>>b)&1){var la2=MAP.latTop-r*MAP.step, lo2=MAP.lon0+c*MAP.step; land.push({lat:la2,lon:lo2,jp:la2>30&&la2<46&&lo2>129.3&&lo2<146});}
+        if(c<MAP.cols&&(nib>>b)&1){var la2=MAP.latTop-r*MAP.step, lo2=MAP.lon0+c*MAP.step, jp=la2>30&&la2<46&&lo2>129.3&&lo2<146; land.push({lat:la2,lon:lo2,jp:jp}); if(jp)jpList.push({lat:la2,lon:lo2});}
         c++;
       }
     }
   }
   var ASPECT=360/(MAP.latTop-MAP.latBot)*0.98;
   function frac(lat,lon){return [((lon-MAP.lon0)%360+360)%360/360,(MAP.latTop-lat)/(MAP.latTop-MAP.latBot)];}
-  var W=0,H=0,dpr=1,view={x:0,y:0,w:0,h:0},CAM={};
+  var W=0,H=0,dpr=1,view={x:0,y:0,w:0,h:0},CAM={},lastKey='',lastTf='',lastTo='';
   function layoutMap(){
     var br=box.getBoundingClientRect(); W=br.width; H=br.height; if(!W||!H)return;
     dpr=Math.min(window.devicePixelRatio||1,2);
-    [cD,cF].forEach(function(cv){cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);});
+    [cD,cF,cT].forEach(function(cv){cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);});
     var narrow=W<700;
     if(reduce){view={x:0,y:0,w:W,h:H};}
     else{
@@ -1320,143 +1414,216 @@ window.ATO_MAP={step:1.8,latTop:76,latBot:-54,lon0:-40.0,cols:200,rows:73,hex:["
     }
     var jp=frac(36.2,136.5);
     var zW=narrow?clamp(view.h*1.18*ASPECT/W,1.7,3.2):Math.min(1.05,view.h*1.12*ASPECT/W);
-    CAM.jp={cx:jp[0],cy:jp[1],z:narrow?5.2:3.1};
+    CAM.close={cx:jp[0],cy:jp[1]-.02,z:narrow?7:4.4};
     CAM.world={cx:narrow?frac(0,98)[0]:0.5,cy:narrow?frac(16,0)[1]:0.47,z:zW};
-    CAM.back={cx:CAM.world.cx+(jp[0]-CAM.world.cx)*0.4,cy:CAM.world.cy+(jp[1]-CAM.world.cy)*0.4,z:zW*1.22};
-    lastKey='';
+    CAM.back={cx:CAM.world.cx+(jp[0]-CAM.world.cx)*0.45,cy:CAM.world.cy+(jp[1]-CAM.world.cy)*0.45,z:zW*1.3};
+    lastKey=''; lastTf=''; lastTo='';
+    if(reduce){box.style.transform='';}
   }
-  function mixCam(a,b,t){return {cx:a.cx+(b.cx-a.cx)*t,cy:a.cy+(b.cy-a.cy)*t,z:Math.exp(Math.log(a.z)+(Math.log(b.z)-Math.log(a.z))*t)};}
+  function mixCam(a,b2,t){return {cx:a.cx+(b2.cx-a.cx)*t,cy:a.cy+(b2.cy-a.cy)*t,z:Math.exp(Math.log(a.z)+(Math.log(b2.z)-Math.log(a.z))*t)};}
   function camAt(p){
-    var c=mixCam(CAM.jp,CAM.world,ease(clamp((p-.13)/.22,0,1)));
-    if(p>.6) c=mixCam(c,CAM.back,ease(clamp((p-.6)/.28,0,1)));
-    return c;
+    if(reduce)return CAM.world;
+    var cm=mixCam(CAM.close,CAM.world,ease(clamp((p-.10)/.2,0,1)));
+    if(p>.72) cm=mixCam(cm,CAM.back,ease(clamp((p-.72)/.18,0,1)));
+    return cm;
+  }
+  function tiltAt(p){
+    var k=ease(clamp((p-.10)/.18,0,1)), th=56*(1-k), rz=-9*(1-ease(clamp((p-.1)/.22,0,1)));
+    if(p>.72) th+=14*ease(clamp((p-.72)/.18,0,1));
+    return [th,rz];
   }
   function proj(cam,lat,lon){
     var fr=frac(lat,lon), mw=W*cam.z, mh=mw/ASPECT;
     return [(fr[0]-cam.cx)*mw+view.x+view.w/2,(fr[1]-cam.cy)*mh+view.y+view.h/2];
   }
-  var lastKey='';
   function drawDots(cam,jpLevel){
     var key=cam.z.toFixed(4)+'|'+cam.cx.toFixed(5)+'|'+cam.cy.toFixed(5)+'|'+jpLevel.toFixed(2)+'|'+W+'x'+H;
     if(key===lastKey)return; lastKey=key;
     gD.setTransform(dpr,0,0,dpr,0,0); gD.clearRect(0,0,W,H);
-    var cell=W*cam.z/200, rad=clamp(cell*.24,.7,6.5), jpPts=[];
-    gD.fillStyle='rgba(174,184,230,.24)'; gD.beginPath();
+    var cell=W*cam.z/200, rad=clamp(cell*.24,.7,6), jpPts=[], pad=H*.6;
+    gD.fillStyle='rgba(174,184,230,.26)'; gD.beginPath();
     for(var i=0;i<land.length;i++){
       var d=land[i], q=proj(cam,d.lat,d.lon);
-      if(q[0]<-8||q[0]>W+8||q[1]<-8||q[1]>H+8)continue;
+      if(q[0]<-pad||q[0]>W+pad||q[1]<-pad||q[1]>H+8)continue;
       if(d.jp){jpPts.push(q);continue;}
       gD.moveTo(q[0]+rad,q[1]); gD.arc(q[0],q[1],rad,0,Math.PI*2);
     }
     gD.fill();
     gD.fillStyle='rgba(255,210,31,'+(0.25+0.75*jpLevel).toFixed(3)+')';
-    gD.shadowColor='rgba(255,210,31,.9)'; gD.shadowBlur=4+10*jpLevel;
+    gD.shadowColor='rgba(255,210,31,.9)'; gD.shadowBlur=4+12*jpLevel;
     gD.beginPath(); jpPts.forEach(function(q){gD.moveTo(q[0]+rad*1.12,q[1]); gD.arc(q[0],q[1],rad*1.12,0,Math.PI*2);}); gD.fill();
     gD.shadowBlur=0;
   }
-  function ctrl(a,b){var dx=b[0]-a[0],dy=b[1]-a[1],dist=Math.sqrt(dx*dx+dy*dy);return [(a[0]+b[0])/2,(a[1]+b[1])/2-dist*.36];}
-  function bez(a,c,b,t){var u=1-t;return [u*u*a[0]+2*u*t*c[0]+t*t*b[0],u*u*a[1]+2*u*t*c[1]+t*t*b[1]];}
-  function strokeCurve(pt,n,alpha,w,col){
-    gF.globalAlpha=alpha; gF.strokeStyle=col; gF.lineWidth=w; gF.beginPath();
-    for(var i=0;i<=n;i++){var q=pt(i/n); if(i===0)gF.moveTo(q[0],q[1]); else gF.lineTo(q[0],q[1]);}
-    gF.stroke();
+  function ctrl(a,b2){var dx=b2[0]-a[0],dy=b2[1]-a[1],dist=Math.sqrt(dx*dx+dy*dy);return [(a[0]+b2[0])/2,(a[1]+b2[1])/2-dist*.36];}
+  function bez(a,c2,b2,t){var u=1-t;return [u*u*a[0]+2*u*t*c2[0]+t*t*b2[0],u*u*a[1]+2*u*t*c2[1]+t*t*b2[1]];}
+  function tan(a,c2,b2,t){var u=1-t;return [2*u*(c2[0]-a[0])+2*t*(b2[0]-c2[0]),2*u*(c2[1]-a[1])+2*t*(b2[1]-c2[1])];}
+  function strokeSeg(g,fn,t0,t1,n,alpha,w,col,dash){
+    if(t1<=t0)return;
+    g.globalAlpha=alpha; g.strokeStyle=col; g.lineWidth=w; if(dash)g.setLineDash(dash); g.beginPath();
+    for(var i=0;i<=n;i++){var q=fn(t0+(t1-t0)*i/n); if(i===0)g.moveTo(q[0],q[1]); else g.lineTo(q[0],q[1]);}
+    g.stroke(); if(dash)g.setLineDash([]); g.globalAlpha=1;
   }
-  function glowDot(x,y,r,inner,outer){
-    var g=gF.createRadialGradient(x,y,0,x,y,r); g.addColorStop(0,inner); g.addColorStop(.4,outer); g.addColorStop(1,'rgba(255,210,31,0)');
-    gF.fillStyle=g; gF.beginPath(); gF.arc(x,y,r,0,Math.PI*2); gF.fill();
+  function glowDot(g,x,y,rr,inner,outer){
+    var gr=g.createRadialGradient(x,y,0,x,y,rr); gr.addColorStop(0,inner); gr.addColorStop(.4,outer); gr.addColorStop(1,'rgba(255,210,31,0)');
+    g.fillStyle=gr; g.beginPath(); g.arc(x,y,rr,0,Math.PI*2); g.fill();
   }
-  var ICONS=[
-    '<svg viewBox="0 0 24 24"><path fill="#FF4D6D" d="M12 20s-7-4.4-9.2-8.6C1.3 8.4 3 5 6.4 5c2 0 3.3 1.1 4 2.3h3.2C14.3 6.1 15.6 5 17.6 5 21 5 22.7 8.4 21.2 11.4 19 15.6 12 20 12 20z"/></svg>',
-    '<svg viewBox="0 0 24 24"><path fill="#FFFFFF" d="M8 5v14l11-7z"/></svg>',
-    '<svg viewBox="0 0 24 24"><path fill="#FFD21F" d="M6 3h12v18l-6-4.5L6 21z"/></svg>'
-  ];
-  function pop(x,y,count){
-    if(x<10||x>W-10||y<view.y||y>H-10)return;
+  function drawPlane(g,x,y,ang,s,alpha){
+    g.save(); g.translate(x,y); g.rotate(ang); g.scale(s,s); g.globalAlpha=alpha; g.fillStyle='#FFFFFF';
+    g.beginPath(); g.moveTo(8,0); g.lineTo(3,-1.3); g.lineTo(-1,-7); g.lineTo(-3,-7); g.lineTo(-1.2,-1.5); g.lineTo(-6,-1.3); g.lineTo(-8,-3.6); g.lineTo(-9.2,-3.6);
+    g.lineTo(-8,0); g.lineTo(-9.2,3.6); g.lineTo(-8,3.6); g.lineTo(-6,1.3); g.lineTo(-1.2,1.5); g.lineTo(-3,7); g.lineTo(-1,7); g.lineTo(3,1.3); g.closePath(); g.fill();
+    g.restore(); g.globalAlpha=1;
+  }
+  function drawBox(g,x,y,ang,s,alpha){
+    g.save(); g.translate(x,y); g.rotate(ang); g.scale(s,s); g.globalAlpha=alpha;
+    g.fillStyle='#D69A5C'; g.fillRect(-5.5,-4.5,11,9);
+    g.fillStyle='#F3D3A1'; g.fillRect(-1.3,-4.5,2.6,9);
+    g.strokeStyle='#8A5A2B'; g.lineWidth=.9; g.strokeRect(-5.5,-4.5,11,9);
+    g.restore(); g.globalAlpha=1;
+  }
+  var ICONS={
+    heart:'<svg viewBox="0 0 24 24"><path fill="#FF4D6D" d="M12 20s-7-4.4-9.2-8.6C1.3 8.4 3 5 6.4 5c2 0 3.3 1.1 4 2.3h3.2C14.3 6.1 15.6 5 17.6 5 21 5 22.7 8.4 21.2 11.4 19 15.6 12 20 12 20z"/></svg>',
+    like:'<svg viewBox="0 0 24 24"><path fill="#5B8CFF" d="M2 10h4v11H2zM8 21h9.3a2 2 0 0 0 2-1.6l1.6-7.2A2 2 0 0 0 18.9 10H14l.9-4.2a2 2 0 0 0-2-2.4L8 10z"/></svg>',
+    share:'<svg viewBox="0 0 24 24"><path fill="#FFFFFF" d="M21 3 2.5 10.6l7.2 2.7 2.7 7.2z"/></svg>',
+    save:'<svg viewBox="0 0 24 24"><path fill="#FFD21F" d="M6 3h12v18l-6-4.5L6 21z"/></svg>',
+    comment:'<svg viewBox="0 0 24 24"><path fill="#FFFFFF" d="M4 4h16v12H9l-5 4z"/></svg>',
+    play:'<svg viewBox="0 0 24 24"><path fill="#FFFFFF" d="M8 5v14l11-7z"/></svg>'
+  };
+  var ICON_KEYS=['heart','like','share','save','comment','heart','play','heart','save'];
+  var BADGES=['+1.2K','+860','+3.4K','+12K','+540','+2.1K','+7.8K'];
+  function pop(x,y,count,badge){
+    if(x<10||x>W-10||y<view.y-10||y>H-10)return;
     for(var k=0;k<count;k++){
       (function(k){
-        var e=document.createElement('span'); e.className='react'; e.innerHTML=ICONS[(k+Math.floor(Math.random()*3))%3];
-        e.style.left=x+'px'; e.style.top=y+'px'; e.style.setProperty('--dx',((k-(count-1)/2)*13)+'px'); e.style.animationDelay=(k*110)+'ms';
+        var e=document.createElement('span'); e.className='react'; e.innerHTML=ICONS[ICON_KEYS[Math.floor(Math.random()*ICON_KEYS.length)]];
+        e.style.left=x+'px'; e.style.top=y+'px'; e.style.setProperty('--dx',((k-(count-1)/2)*14+(Math.random()*8-4))+'px'); e.style.animationDelay=(k*90)+'ms';
         reactsEl.appendChild(e); setTimeout(function(){e.remove();},1900);
       })(k);
     }
+    if(badge){
+      var bd=document.createElement('span'); bd.className='react-badge'; bd.textContent=BADGES[Math.floor(Math.random()*BADGES.length)];
+      bd.style.left=x+'px'; bd.style.top=y+'px'; reactsEl.appendChild(bd); setTimeout(function(){bd.remove();},2100);
+    }
   }
-  var OUT=CITIES.map(function(c,i){return {c:c,s:.18+i*.016,d:.1,landed:false};});
-  var IN=CITIES.map(function(c,i){return {c:c,s:.62+i*.012,d:.1,landed:false};});
-  var pS=0,aS=0,lastT=0,lastAmb=0,running=false,raf=0,countTxt='',hintReady=false,hint=$('bnHint');
+  var pS=0,aS=0,lastT=0,running=false,raf=0,countTxt='',hintReady=false,hint=$('bnHint');
+  var bursts=[], boxes=[], planes=[], lastPop=0, lastBox=0, lastPlane=0;
   function sectionProgress(){
-    var r=reachSec.getBoundingClientRect();
-    return {a:clamp((vh*.64-r.top)/(vh*.64),0,1),p:clamp(-r.top/Math.max(1,r.height-vh),0,1)};
+    var r2=reachSec.getBoundingClientRect();
+    return {a:clamp((vh*.64-r2.top)/(vh*.64),0,1),p:clamp(-r2.top/Math.max(1,r2.height-vh),0,1)};
   }
   function fmtCount(v){
     if(v>=1e8-1)return ['1<small>億回超</small>','100<small>M+</small>'];
     return [Math.floor(v/1e4).toLocaleString('ja-JP')+'<small>万回</small>',Math.floor(v/1e6)+'<small>M</small>'];
   }
+  function prog(fl){return reduce?1:clamp((pS-fl.s)/fl.d,0,1);}
+  function burst(city,kind,now){bursts.push({c:city,k:kind,t:now});}
   function render(now){
     if(!W||!H)return;
-    var cam=camAt(pS), jpLevel=reduce?1:clamp(.3+.7*(pS/.1),0,1);
+    var cam=camAt(pS), jpLevel=reduce?1:clamp(.3+.7*(pS/.08),0,1);
     drawDots(cam,jpLevel);
-    gF.setTransform(dpr,0,0,dpr,0,0); gF.clearRect(0,0,W,H);
     var o=proj(cam,ORIGIN.lat,ORIGIN.lon), gold='#FFD21F';
-    var inLanded=0;
-    IN.forEach(function(fl){if(clamp((pS-fl.s)/fl.d,0,1)>=1)inLanded++;});
-    // thread coming in from above
+    if(!reduce){
+      var tl=tiltAt(pS), tf='perspective(1000px) rotateX('+tl[0].toFixed(2)+'deg) rotateZ('+tl[1].toFixed(2)+'deg)';
+      if(tf!==lastTf){lastTf=tf; box.style.transform=tf;}
+      var to=o[0].toFixed(1)+'px '+o[1].toFixed(1)+'px'; if(to!==lastTo){lastTo=to; box.style.transformOrigin=to;}
+    }
+    gF.setTransform(dpr,0,0,dpr,0,0); gF.clearRect(0,0,W,H);
+    gT.setTransform(dpr,0,0,dpr,0,0); gT.clearRect(0,0,W,H);
+    function P(c2){return proj(cam,c2.lat,c2.lon);}
+    // Japan: glow, pulses, twinkling lights
+    var inLanded=0; INW.forEach(function(fl){if(prog(fl)>=1)inLanded++;});
+    var jg=.35+.65*(inLanded/INW.length);
+    glowDot(gF,o[0],o[1],30+70*jg,'rgba(255,230,140,'+(.35+.45*jg).toFixed(2)+')','rgba(255,210,31,'+(.12+.22*jg).toFixed(2)+')');
+    for(var pr=0;pr<2;pr++){var ph=((now/1800)+pr*.5)%1; gF.globalAlpha=(1-ph)*.7; gF.strokeStyle=gold; gF.lineWidth=1.5; gF.beginPath(); gF.arc(o[0],o[1],7+ph*(34+30*jg),0,Math.PI*2); gF.stroke();}
+    gF.globalAlpha=1; gF.fillStyle=gold; gF.beginPath(); gF.arc(o[0],o[1],4.5,0,Math.PI*2); gF.fill();
+    if(!reduce&&pS<.3){
+      var tw=Math.floor(now/140);
+      for(var k=0;k<7;k++){var jd=jpList[(tw*7+k*13)%jpList.length], q=P(jd); glowDot(gF,q[0],q[1],10+6*((k+tw)%3),'rgba(255,255,255,.9)','rgba(255,210,31,.45)');}
+    }
+    // out: videos to the world
+    var outAlpha=pS<.52?.55:(pS<.72?.34:.2);
+    OUT.forEach(function(fl){
+      var fp=prog(fl); if(fp<=0){fl.landed=false;return;}
+      var b2=P(fl.c), e=ease(fp), cc=ctrl(o,b2);
+      var grad=gF.createLinearGradient(o[0],o[1],b2[0],b2[1]); grad.addColorStop(0,'rgba(255,210,31,.95)'); grad.addColorStop(1,'rgba(255,138,61,.95)');
+      strokeSeg(gF,function(t){return bez(o,cc,b2,t);},0,e,36,fp<1?1:outAlpha,1.5,grad);
+      if(fp<1){var h=bez(o,cc,b2,e); glowDot(gF,h[0],h[1],13,'rgba(255,255,255,.95)','rgba(255,210,31,.6)'); fl.landed=false;}
+      else{
+        if(!fl.landed){fl.landed=true; if(!reduce){burst(fl.c,'gold',now); pop(b2[0],b2[1],2+Math.floor(Math.random()*3),Math.random()<.4);}}
+        glowDot(gF,b2[0],b2[1],15,'rgba(255,200,120,.7)','rgba(255,138,61,.22)');
+        gF.fillStyle='#FF8A3D'; gF.beginPath(); gF.arc(b2[0],b2[1],2.8,0,Math.PI*2); gF.fill();
+        if(!reduce&&pS>=.3){ // traffic running along the line
+          var tp=((now/1500)+fl.s*37)%1, q2=bez(o,cc,b2,tp);
+          gF.globalAlpha=pS<.72?.9:.5; gF.fillStyle='#FFF3C4'; gF.beginPath(); gF.arc(q2[0],q2[1],1.8,0,Math.PI*2); gF.fill(); gF.globalAlpha=1;
+        }
+      }
+    });
+    // boxes: the first shipment follows the scroll, then more keep going
+    BOXW.forEach(function(fl){
+      var fp=prog(fl); if(fp<=0){fl.landed=false;return;}
+      var b2=P(fl.c), cc=ctrl(o,b2), e=ease(fp), fn=function(t){return bez(o,cc,b2,t);};
+      strokeSeg(gF,fn,Math.max(0,e-.3),e,14,fp<1?.7:.25,1.3,'#E8B57A',[3,4]);
+      if(fp<1){var h=fn(e); drawBox(gF,h[0],h[1],Math.sin(now/220+fl.seed*6)*.25,1.55,1); fl.landed=false;}
+      else if(!fl.landed){fl.landed=true; if(!reduce)burst(fl.c,'kraft',now);}
+    });
+    boxes=boxes.filter(function(bx){
+      var k2=(now-bx.t)/bx.d; if(k2>=1){burst(bx.c,'kraft',now); return false;}
+      var b2=P(bx.c), cc=ctrl(o,b2), e=ease(k2), fn=function(t){return bez(o,cc,b2,t);};
+      strokeSeg(gF,fn,Math.max(0,e-.3),e,12,.6,1.3,'#E8B57A',[3,4]);
+      var h=fn(e); drawBox(gF,h[0],h[1],Math.sin(now/200+bx.seed*6)*.3,1.35,Math.min(1,k2*6)); return true;
+    });
+    // planes: the world comes to Japan
+    INW.forEach(function(fl){
+      var fp=prog(fl); if(fp<=0){fl.landed=false;return;}
+      var b2=P(fl.c), cc=ctrl(b2,o), e=ease(fp), fn=function(t){return bez(b2,cc,o,t);};
+      var grad=gF.createLinearGradient(b2[0],b2[1],o[0],o[1]); grad.addColorStop(0,'rgba(255,255,255,.1)'); grad.addColorStop(1,'rgba(255,255,255,.9)');
+      strokeSeg(gF,fn,0,e,30,fp<1?.9:.45,1.3,grad);
+      if(fp<1){var h=fn(e), tg=tan(b2,cc,o,e); glowDot(gF,h[0],h[1],12,'rgba(255,255,255,.6)','rgba(200,220,255,.25)'); drawPlane(gF,h[0],h[1],Math.atan2(tg[1],tg[0]),1.3,1); fl.landed=false;}
+      else if(!fl.landed){fl.landed=true; if(!reduce){burst(ORIGIN,'white',now); if(Math.random()<.35)pop(o[0],o[1]-8,1,false);}}
+    });
+    planes=planes.filter(function(pl){
+      var k2=(now-pl.t)/pl.d; if(k2>=1){burst(ORIGIN,'white',now); return false;}
+      var b2=P(pl.c), cc=ctrl(b2,o), e=ease(k2), fn=function(t){return bez(b2,cc,o,t);};
+      strokeSeg(gF,fn,Math.max(0,e-.3),e,14,.4,1.2,'#FFFFFF');
+      var h=fn(e), tg=tan(b2,cc,o,e); drawPlane(gF,h[0],h[1],Math.atan2(tg[1],tg[0]),1.1,Math.min(1,k2*5)); return true;
+    });
+    // landing bursts
+    bursts=bursts.filter(function(bs){
+      var k2=(now-bs.t)/900; if(k2>=1)return false;
+      var q=P(bs.c), col=bs.k==='gold'?'255,190,90':(bs.k==='kraft'?'232,181,122':'255,255,255'), e=easeOut(k2);
+      gF.globalAlpha=1-k2; gF.strokeStyle='rgba('+col+',1)'; gF.lineWidth=1.4; gF.beginPath(); gF.arc(q[0],q[1],3+e*(bs.k==='white'?30:22),0,Math.PI*2); gF.stroke();
+      gF.fillStyle='rgba('+col+',1)';
+      for(var s2=0;s2<8;s2++){var an=s2*Math.PI/4+(bs.t%7), dd=4+e*24; gF.beginPath(); gF.arc(q[0]+Math.cos(an)*dd,q[1]+Math.sin(an)*dd,1.4*(1-k2)+.4,0,Math.PI*2); gF.fill();}
+      gF.globalAlpha=1; return true;
+    });
+    // the golden thread in and out (drawn flat, over the tilted map)
     if(!reduce&&aS>0){
       var a0=[shared.railX,-4], c1=[shared.railX,o[1]+20], c2=[shared.railX+(o[0]-shared.railX)*.35,o[1]];
       var entry=function(t){var u=1-t;return [u*u*u*a0[0]+3*u*u*t*c1[0]+3*u*t*t*c2[0]+t*t*t*o[0],u*u*u*a0[1]+3*u*u*t*c1[1]+3*u*t*t*c2[1]+t*t*t*o[1]];};
-      var ea=aS, fade=pS>.2?.45:1;
-      strokeCurve(function(t){return entry(t*ea);},60,.16*fade,9,gold);
-      strokeCurve(function(t){return entry(t*ea);},60,fade,2.2,gold);
-      if(ea<1){var h=entry(ea); glowDot(h[0],h[1],14,'rgba(255,255,255,.95)','rgba(255,210,31,.6)');}
+      var fade=pS>.2?.4:1;
+      strokeSeg(gT,entry,0,aS,60,.16*fade,9,gold); strokeSeg(gT,entry,0,aS,60,fade,2.2,gold);
+      if(aS<1){var he=entry(aS); glowDot(gT,he[0],he[1],14,'rgba(255,255,255,.95)','rgba(255,210,31,.6)');}
     }
-    // Japan glow
-    var ph=(now%1800)/1800, jg=.35+.65*(inLanded/IN.length);
-    glowDot(o[0],o[1],26+46*jg,'rgba(255,230,140,'+(.35+.4*jg).toFixed(2)+')','rgba(255,210,31,'+(.12+.2*jg).toFixed(2)+')');
-    gF.globalAlpha=(1-ph)*.7; gF.strokeStyle=gold; gF.lineWidth=1.5; gF.beginPath(); gF.arc(o[0],o[1],7+ph*26,0,Math.PI*2); gF.stroke();
-    gF.globalAlpha=1; gF.fillStyle=gold; gF.beginPath(); gF.arc(o[0],o[1],4,0,Math.PI*2); gF.fill();
-    // out: Japan to the world
-    OUT.forEach(function(fl){
-      var fp=reduce?1:clamp((pS-fl.s)/fl.d,0,1), b=proj(cam,fl.c.lat,fl.c.lon);
-      if(fp<=0){fl.landed=false;return;}
-      var e=ease(fp), cc=ctrl(o,b), alpha=fp<1?1:(pS>.6?.28:.55);
-      var grad=gF.createLinearGradient(o[0],o[1],b[0],b[1]); grad.addColorStop(0,'rgba(255,210,31,.9)'); grad.addColorStop(1,'rgba(255,138,61,.9)');
-      strokeCurve(function(t){return bez(o,cc,b,t*e);},40,alpha,1.6,grad);
-      if(fp<1){var h=bez(o,cc,b,e); gF.globalAlpha=1; glowDot(h[0],h[1],13,'rgba(255,255,255,.95)','rgba(255,210,31,.6)'); fl.landed=false;}
-      else{
-        if(!fl.landed){fl.landed=true; fl.t=now; if(!reduce)pop(b[0],b[1],3);}
-        var rp=Math.min(1,(now-fl.t)/1100);
-        gF.globalAlpha=(1-rp)*.9; gF.strokeStyle='#FF8A3D'; gF.lineWidth=1.5; gF.beginPath(); gF.arc(b[0],b[1],3+rp*22,0,Math.PI*2); gF.stroke();
-        gF.globalAlpha=1; glowDot(b[0],b[1],16,'rgba(255,200,120,.75)','rgba(255,138,61,.25)');
-        gF.fillStyle='#FF8A3D'; gF.beginPath(); gF.arc(b[0],b[1],3,0,Math.PI*2); gF.fill();
+    if(!reduce&&pS>.9){
+      var ex=clamp((pS-.9)/.09,0,1), b0=[shared.railX,H+4], k1=[shared.railX+(o[0]-shared.railX)*.35,o[1]], k3=[shared.railX,o[1]+20];
+      var exit=function(t){var u=1-t;return [u*u*u*o[0]+3*u*u*t*k1[0]+3*u*t*t*k3[0]+t*t*t*b0[0],u*u*u*o[1]+3*u*u*t*k1[1]+3*u*t*t*k3[1]+t*t*t*b0[1]];};
+      strokeSeg(gT,exit,0,ease(ex),60,.16,9,gold); strokeSeg(gT,exit,0,ease(ex),60,1,2.2,gold);
+      if(ex<1||!shared.bStarted){var hx=exit(ease(ex)); if(hx[1]<H-2)glowDot(gT,hx[0],hx[1],14,'rgba(255,255,255,.95)','rgba(255,210,31,.6)');}
+    }
+    // keep the world busy once each scene has played
+    if(!reduce&&pS<.985){
+      var landed=OUT.filter(function(fl){return fl.landed;});
+      var gap=pS<.52?110:340;
+      if(pS>=.33&&landed.length&&now-lastPop>gap){
+        lastPop=now; var pk=landed[Math.floor(Math.random()*landed.length)], q3=P(pk.c);
+        pop(q3[0],q3[1],pS<.52?1+Math.floor(Math.random()*2):1,Math.random()<(pS<.52?.3:.12));
       }
-    });
-    // in: the world comes to Japan
-    IN.forEach(function(fl){
-      var fp=reduce?1:clamp((pS-fl.s)/fl.d,0,1), b=proj(cam,fl.c.lat,fl.c.lon);
-      if(fp<=0){fl.landed=false;return;}
-      var e=ease(fp), cc=ctrl(b,o);
-      var grad=gF.createLinearGradient(b[0],b[1],o[0],o[1]); grad.addColorStop(0,'rgba(255,255,255,.15)'); grad.addColorStop(1,'rgba(255,255,255,.95)');
-      strokeCurve(function(t){return bez(b,cc,o,t*e);},40,fp<1?1:.6,1.5,grad);
-      if(fp<1){var h=bez(b,cc,o,e); glowDot(h[0],h[1],12,'rgba(255,255,255,1)','rgba(200,220,255,.45)'); fl.landed=false;}
-      else if(!fl.landed){fl.landed=true; if(!reduce&&fl===IN[IN.length-1])pop(o[0],o[1]-6,3); else if(!reduce&&Math.random()<.5)pop(o[0],o[1]-6,1);}
-    });
-    // thread leaving for the next section
-    if(!reduce&&pS>.87){
-      var ex=clamp((pS-.87)/.11,0,1), b0=[shared.railX,H+4], k1=[shared.railX+(o[0]-shared.railX)*.35,o[1]], k2=[shared.railX,o[1]+20];
-      var exit=function(t){var u=1-t;return [u*u*u*o[0]+3*u*u*t*k1[0]+3*u*t*t*k2[0]+t*t*t*b0[0],u*u*u*o[1]+3*u*u*t*k1[1]+3*u*t*t*k2[1]+t*t*t*b0[1]];};
-      strokeCurve(function(t){return exit(t*ease(ex));},60,.16,9,gold);
-      strokeCurve(function(t){return exit(t*ease(ex));},60,1,2.2,gold);
-      if(ex<1||!shared.bStarted){var h2=exit(ease(ex)); if(h2[1]<H-2)glowDot(h2[0],h2[1],14,'rgba(255,255,255,.95)','rgba(255,210,31,.6)');}
-    }
-    gF.globalAlpha=1;
-    // ambient reactions once the videos have landed
-    if(!reduce&&pS>.46&&pS<.98&&now-lastAmb>620){
-      lastAmb=now; var landed=OUT.filter(function(fl){return fl.landed;});
-      if(landed.length){var pick=landed[Math.floor(Math.random()*landed.length)], q=proj(cam,pick.c.lat,pick.c.lon); pop(q[0],q[1],1+Math.floor(Math.random()*2));}
+      if(pS>=.56&&now-lastBox>(pS<.72?120:260)){lastBox=now; boxes.push({c:CITIES[Math.floor(Math.random()*CITIES.length)],t:now,d:1600+Math.random()*700,seed:Math.random()});}
+      if(pS>=.78&&now-lastPlane>230){lastPlane=now; planes.push({c:CITIES[Math.floor(Math.random()*CITIES.length)],t:now,d:1900+Math.random()*700});}
     }
     // counter
     if(!reduce){
-      var cp=clamp((pS-.47)/.13,0,1);
-      countEl.classList.toggle('on',pS>.47);
+      var cp=clamp((pS-.34)/.18,0,1);
+      countEl.classList.toggle('on',pS>.34);
       var txt=fmtCount(1e8*easeOut(cp));
       if(txt[0]!==countTxt){countTxt=txt[0]; bigJa.innerHTML=txt[0]; bigEn.innerHTML=txt[1];}
     }
@@ -1469,14 +1636,14 @@ window.ATO_MAP={step:1.8,latTop:76,latBot:-54,lon0:-40.0,cols:200,rows:73,hex:["
     var sc=sp.a<1?0:sceneFor(sp.p);
     var target=TARGET[sc];
     if(pS<target){
-      var r=0; while(r<TARGET.length-1&&pS>=TARGET[r])r++;
-      var from=r?TARGET[r-1]:0, v=(TARGET[r]-from)/DUR[r]*(1+Math.max(0,sc-r)*.5);
+      var r2=0; while(r2<TARGET.length-1&&pS>=TARGET[r2])r2++;
+      var from=r2?TARGET[r2-1]:0, v=(TARGET[r2]-from)/DUR[r2]*(1+Math.max(0,sc-r2)*.5);
       pS=Math.min(target,pS+v*dt/1000);
     } else if(pS>target){ pS=Math.max(target,pS-.7*dt/1000); }
     // captions follow what is on screen, not where the scroll is
-    var ds=pS<=TARGET[0]+1e-4?0:pS<=TARGET[1]+1e-4?1:pS<=TARGET[2]+1e-4?2:3;
+    var ds=0; while(ds<NS-1&&pS>TARGET[ds]+1e-4)ds++;
     if(ds!==scene){scene=ds; setScene(ds);}
-    var ready=pS===target&&sc<4;
+    var ready=pS===target&&sc<NS;
     if(ready!==hintReady){hintReady=ready; hint.classList.toggle('ready',ready);}
     render(now);
     raf=requestAnimationFrame(loop);
