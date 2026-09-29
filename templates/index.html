@@ -266,7 +266,7 @@ mark{background:var(--cap);color:var(--cap-ink);padding:0 .12em;border-radius:4p
 .fill .key.on,.no-js .fill .key{background-size:100% 32%}
 
 /* ---------- reach: pinned map story ---------- */
-.reach{position:relative;z-index:1;margin-inline:calc(-1*var(--pad));height:420vh}
+.reach{position:relative;z-index:1;margin-inline:calc(-1*var(--pad));height:460vh}
 .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
 .st-map{position:absolute;inset:0}
 .st-map canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
@@ -276,8 +276,8 @@ mark{background:var(--cap);color:var(--cap-ink);padding:0 .12em;border-radius:4p
 .hud{display:flex;align-items:center;gap:10px;font:500 .7rem/1 var(--mono);letter-spacing:.16em;color:var(--muted)}
 .hud .live{width:7px;height:7px;border-radius:50%;background:#FF5A5F;box-shadow:0 0 0 4px rgba(255,90,95,.2);animation:blink 1.4s ease-in-out infinite}
 .beats{position:relative;margin-top:18px;min-height:7.2em}
-.beat{position:absolute;left:0;right:0;top:0;opacity:0;will-change:opacity,transform}
-.beat.first{opacity:1}
+.beat{position:absolute;left:0;right:0;top:0;opacity:0;visibility:hidden;transform:translateY(16px);transition:opacity .55s ease,transform .75s cubic-bezier(.2,.8,.2,1),visibility 0s linear .55s}
+.beat.on{opacity:1;visibility:visible;transform:none;transition-delay:0s}
 .beat h2{font-size:clamp(1.55rem,3.5vw,2.75rem);line-height:1.4;max-width:15em}
 .beat h2 .en{display:block;line-height:1.2;letter-spacing:-.022em}
 .beat p{margin-top:12px;color:var(--muted);font-size:1.02rem;max-width:30em;text-wrap:pretty}
@@ -290,9 +290,22 @@ mark{background:var(--cap);color:var(--cap-ink);padding:0 .12em;border-radius:4p
 .count .big small{font-size:.4em;margin-left:.08em;letter-spacing:0}
 .count-sub{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:14px;font-size:.84rem;color:var(--muted)}
 .count-sub b{color:var(--ink);font-weight:800;font-size:1.02rem;margin-right:6px;font-variant-numeric:tabular-nums}
-.beat-ticks{display:flex;gap:8px;padding-bottom:6px}
-.beat-ticks i{width:24px;height:3px;border-radius:2px;background:var(--line);transition:background .4s}
-.beat-ticks i.on{background:var(--cap)}
+.beat-nav{pointer-events:auto;display:flex;flex-direction:column;align-items:flex-end;gap:10px;margin-left:auto}
+.bn-hint{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;font-weight:700;color:var(--ink);background:color-mix(in srgb,var(--surface) 75%,transparent);border:1px solid var(--line);padding:7px 13px;border-radius:999px;opacity:.35;transition:opacity .4s,border-color .4s}
+.bn-hint.ready{opacity:1;border-color:color-mix(in srgb,var(--cap) 60%,transparent)}
+.bn-hint i{font-style:normal;color:var(--cap);display:inline-block}
+.bn-hint.ready i{animation:nudge 1.3s ease-in-out infinite}
+@keyframes nudge{50%{transform:translateY(3px)}}
+.bn-row{display:flex;align-items:center;gap:12px}
+.bn-count{font:500 .74rem/1 var(--mono);letter-spacing:.1em;color:var(--muted);font-variant-numeric:tabular-nums}
+.bn-count b{font-weight:500;color:var(--ink)}
+.beat-ticks{display:flex;gap:4px}
+.beat-ticks button{position:relative;width:30px;height:22px;padding:0;border:0;background:transparent;cursor:pointer}
+.beat-ticks button::before{content:"";position:absolute;left:3px;right:3px;top:50%;height:3px;margin-top:-1.5px;border-radius:2px;background:var(--line);transition:background .4s}
+.beat-ticks button.on::before{background:var(--cap)}
+.beat-ticks button:hover::before{background:var(--muted)}
+.beat-ticks button.on:hover::before{background:var(--cap)}
+.beat-ticks button:focus-visible{outline:2px solid var(--cap);outline-offset:1px;border-radius:4px}
 .react{position:absolute;width:24px;height:24px;margin:-12px 0 0 -12px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.12);animation:float-up 1.6s cubic-bezier(.2,.8,.2,1) forwards}
 .react svg{width:13px;height:13px}
 @keyframes float-up{0%{opacity:0;transform:translate(0,0) scale(.4)}15%{opacity:1;transform:translate(var(--dx),-10px) scale(1.05)}100%{opacity:0;transform:translate(calc(var(--dx)*2),-58px) scale(.9)}}
@@ -302,11 +315,12 @@ mark{background:var(--cap);color:var(--cap-ink);padding:0 .12em;border-radius:4p
 .rm .st-text{order:0}.rm .st-map{order:1}.rm .st-foot{order:2}
 .rm .st-text,.rm .st-foot{position:relative;padding-top:0;padding-bottom:0;background:none}
 .rm .beats{min-height:0;display:flex;flex-direction:column;gap:18px}
-.rm .beat{position:relative;opacity:1}
+.rm .beat{position:relative;opacity:1;visibility:visible;transform:none}
+.rm .beat-nav{display:none}
 .rm .st-map{position:relative;aspect-ratio:2.3;max-width:100%;margin-block:24px}
 .rm .count{opacity:1;transform:none}
 @media (max-width:860px){
-  .reach{height:400vh}
+  .reach{height:440vh}
   .st-text{padding-top:calc(84px + env(safe-area-inset-top,0px))}
   .beats{min-height:8.6em}
   .rm .st-map{aspect-ratio:1}
@@ -661,7 +675,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <div class="st-in">
         <p class="hud"><span class="live" aria-hidden="true"></span><span id="hudTxt">TOKYO → WORLD</span></p>
         <div class="beats">
-          <div class="beat first" id="beat1">
+          <div class="beat on" id="beat1">
             <h2><span class="ja"><span class="nb">日本には、</span><span class="nb">世界がまだ知らない</span><span class="nb">一流がある。</span></span><span class="en">Japan is full of world-class things the world has yet to find.</span></h2>
           </div>
           <div class="beat">
@@ -688,7 +702,15 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
             <span><b><span class="ja">500万</span><span class="en">5M</span></b><span class="ja">最高月間リーチ</span><span class="en">peak monthly reach</span></span>
           </span>
         </div>
-        <div class="beat-ticks" id="beatTicks" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+        <div class="beat-nav">
+          <p class="bn-hint" id="bnHint"><span class="ja">スクロールで次へ</span><span class="en">Scroll for next</span><i aria-hidden="true">↓</i></p>
+          <div class="bn-row">
+            <span class="bn-count" aria-hidden="true"><b id="bnNow">1</b> / 4</span>
+            <div class="beat-ticks" id="beatTicks">
+              <button type="button" class="on" data-scene="0" aria-label="シーン1へ"></button><button type="button" data-scene="1" aria-label="シーン2へ"></button><button type="button" data-scene="2" aria-label="シーン3へ"></button><button type="button" data-scene="3" aria-label="シーン4へ"></button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1249,9 +1271,23 @@ window.ATO_MAP={step:1.8,latTop:76,latBot:-54,lon0:-40.0,cols:200,rows:73,hex:["
   var MAP=window.ATO_MAP;
   var box=$('stMap'), cD=$('rDots'), cF=$('rFx'), gD=cD.getContext('2d'), gF=cF.getContext('2d'), reactsEl=$('reacts');
   var stText=document.querySelector('.st-text'), stFoot=document.querySelector('.st-foot');
-  var beats=[].slice.call(document.querySelectorAll('.beat')), ticks=[].slice.call(document.querySelectorAll('#beatTicks i'));
+  var beats=[].slice.call(document.querySelectorAll('.beat')), ticks=[].slice.call(document.querySelectorAll('#beatTicks button')), bnNow=$('bnNow');
   var countEl=$('count'), bigJa=document.querySelector('#countBig .ja'), bigEn=document.querySelector('#countBig .en'), hudTxt=$('hudTxt');
-  var BEATS=[[0,.17],[.17,.38],[.38,.6],[.6,1.01]];
+  /* scenes: scrolling picks the scene, time plays it, so nothing is skipped */
+  var ZONES=[.2,.45,.7,.93], STOP=[0,.32,.57,.82], TARGET=[.12,.46,.6,.86,1], DUR=[1,2.6,1.8,2.4,.9], scene=0;
+  function sceneFor(p){var sc=0; for(var i=0;i<ZONES.length;i++){if(p>=ZONES[i])sc=i+1;} return sc;}
+  function setScene(sc){
+    var b=Math.min(sc,3);
+    beats.forEach(function(el,k){el.classList.toggle('on',k===b);});
+    ticks.forEach(function(t,k){t.classList.toggle('on',k<=b); if(k===b)t.setAttribute('aria-current','step'); else t.removeAttribute('aria-current');});
+    bnNow.textContent=String(b+1);
+    hudTxt.textContent=b===3?'WORLD → TOKYO':'TOKYO → WORLD';
+  }
+  function goScene(k){
+    var y=reachSec.getBoundingClientRect().top+window.pageYOffset+STOP[k]*(reachSec.offsetHeight-window.innerHeight);
+    window.scrollTo({top:Math.round(y)+(k?2:0),behavior:reduce?'auto':'smooth'});
+  }
+  ticks.forEach(function(t){t.addEventListener('click',function(){goScene(+t.getAttribute('data-scene'));});});
   var ORIGIN={lat:35.68,lon:139.69};
   var CITIES=[
     {lat:13.75,lon:100.5},{lat:34.05,lon:-118.24},{lat:51.51,lon:-0.13},{lat:-33.87,lon:151.21},
@@ -1346,7 +1382,7 @@ window.ATO_MAP={step:1.8,latTop:76,latBot:-54,lon0:-40.0,cols:200,rows:73,hex:["
   }
   var OUT=CITIES.map(function(c,i){return {c:c,s:.18+i*.016,d:.1,landed:false};});
   var IN=CITIES.map(function(c,i){return {c:c,s:.62+i*.012,d:.1,landed:false};});
-  var pS=0,aS=0,lastT=0,lastAmb=0,running=false,raf=0,beatOn=-1,countTxt='';
+  var pS=0,aS=0,lastT=0,lastAmb=0,running=false,raf=0,countTxt='',hintReady=false,hint=$('bnHint');
   function sectionProgress(){
     var r=reachSec.getBoundingClientRect();
     return {a:clamp((vh*.64-r.top)/(vh*.64),0,1),p:clamp(-r.top/Math.max(1,r.height-vh),0,1)};
@@ -1417,17 +1453,10 @@ window.ATO_MAP={step:1.8,latTop:76,latBot:-54,lon0:-40.0,cols:200,rows:73,hex:["
       lastAmb=now; var landed=OUT.filter(function(fl){return fl.landed;});
       if(landed.length){var pick=landed[Math.floor(Math.random()*landed.length)], q=proj(cam,pick.c.lat,pick.c.lon); pop(q[0],q[1],1+Math.floor(Math.random()*2));}
     }
-    // text beats, counter, hud
+    // counter
     if(!reduce){
-      beats.forEach(function(el,k){
-        var s=BEATS[k][0],e2=BEATS[k][1];
-        var op=Math.min(k===0?1:clamp((pS-s)/.035,0,1),k===beats.length-1?1:clamp((e2-pS)/.035,0,1));
-        if(el._op!==op){el._op=op; el.style.opacity=op.toFixed(3); el.style.transform='translateY('+((1-op)*(pS<s+.02?16:-16)).toFixed(1)+'px)'; el.style.visibility=op<.01?'hidden':'visible';}
-      });
-      var bi=0; BEATS.forEach(function(r2,k){if(pS>=r2[0])bi=k;});
-      if(bi!==beatOn){beatOn=bi; ticks.forEach(function(t,k){t.classList.toggle('on',k<=bi);}); hudTxt.textContent=bi===3?'WORLD → TOKYO':'TOKYO → WORLD';}
-      var cp=clamp((pS-.36)/.22,0,1);
-      countEl.classList.toggle('on',pS>.36);
+      var cp=clamp((pS-.47)/.13,0,1);
+      countEl.classList.toggle('on',pS>.47);
       var txt=fmtCount(1e8*easeOut(cp));
       if(txt[0]!==countTxt){countTxt=txt[0]; bigJa.innerHTML=txt[0]; bigEn.innerHTML=txt[1];}
     }
@@ -1436,12 +1465,23 @@ window.ATO_MAP={step:1.8,latTop:76,latBot:-54,lon0:-40.0,cols:200,rows:73,hex:["
     if(!running)return;
     var dt=lastT?Math.min(64,now-lastT):16; lastT=now;
     var sp=sectionProgress(), k=1-Math.pow(1-.14,dt/16.7);
-    pS+=(sp.p-pS)*k; aS+=(sp.a-aS)*k;
-    if(Math.abs(sp.p-pS)<.0004)pS=sp.p; if(Math.abs(sp.a-aS)<.0004)aS=sp.a;
+    aS+=(sp.a-aS)*k; if(Math.abs(sp.a-aS)<.0004)aS=sp.a;
+    var sc=sp.a<1?0:sceneFor(sp.p);
+    var target=TARGET[sc];
+    if(pS<target){
+      var r=0; while(r<TARGET.length-1&&pS>=TARGET[r])r++;
+      var from=r?TARGET[r-1]:0, v=(TARGET[r]-from)/DUR[r]*(1+Math.max(0,sc-r)*.5);
+      pS=Math.min(target,pS+v*dt/1000);
+    } else if(pS>target){ pS=Math.max(target,pS-.7*dt/1000); }
+    // captions follow what is on screen, not where the scroll is
+    var ds=pS<=TARGET[0]+1e-4?0:pS<=TARGET[1]+1e-4?1:pS<=TARGET[2]+1e-4?2:3;
+    if(ds!==scene){scene=ds; setScene(ds);}
+    var ready=pS===target&&sc<4;
+    if(ready!==hintReady){hintReady=ready; hint.classList.toggle('ready',ready);}
     render(now);
     raf=requestAnimationFrame(loop);
   }
-  function startMap(){if(running||reduce)return; running=true; lastT=0; var sp=sectionProgress(); if(!pS){pS=sp.p;aS=sp.a;} raf=requestAnimationFrame(loop);}
+  function startMap(){if(running||reduce)return; running=true; lastT=0; var sp=sectionProgress(); if(!aS)aS=sp.a; raf=requestAnimationFrame(loop);}
   function stopMap(){running=false; cancelAnimationFrame(raf);}
   var mapInView=false;
   new IntersectionObserver(function(es){mapInView=es[0].isIntersecting; if(mapInView&&!document.hidden)startMap(); else stopMap();},{rootMargin:'10% 0px'}).observe(reachSec);
