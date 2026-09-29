@@ -43,7 +43,7 @@ def send_mail(subject, body, reply_to=''):
         server.login(EMAIL_USER, EMAIL_PASS)
         server.send_message(msg)
 
-# Googleカレンダーの予約ページ(無料アカウント診断)
+# Googleカレンダーの予約ページ(無料相談)
 BOOKING_URL = "https://calendar.google.com/calendar/appointments/schedules/AcZssZ0jKTMGYPGyb66507pVwzRPx2s5_XclcQYeBKHBN3Z343iK8iJvjzYDvdHX6pccutsFwW_VcRIR"
 
 @app.route('/')
@@ -122,7 +122,7 @@ def send():
 
 @app.route('/apply', methods=['POST'])
 def apply():
-    """LPの「Webで申し込む」フォーム。内容をMAIL_TOに送る。"""
+    """LPの問い合わせフォーム。内容をMAIL_TOに送る。"""
     data = request.get_json(silent=True) or request.form
     if data.get('botcheck'):
         return jsonify(ok=True)
@@ -137,13 +137,13 @@ def apply():
     message = (data.get('message') or '').strip()[:5000]
     lang = (data.get('lang') or 'ja').strip()[:5]
 
-    body = f"""【ATO LP 無料診断の申し込み】
+    body = f"""【ATO LP 無料相談のお問い合わせ】
 
 お名前: {name}
 会社名・屋号: {company or '(未記入)'}
 所属部署: {department or '(未記入)'}
 メールアドレス: {email}
-SNSアカウント: {account or '(未記入)'}
+SNS・サイト: {account or '(未記入)'}
 ご相談したいこと: {kind}
 表示言語: {lang}
 
@@ -151,7 +151,7 @@ SNSアカウント: {account or '(未記入)'}
 {message or '(未記入)'}
 """
     try:
-        send_mail(f"【ATO LP】無料診断の申し込み：{company + ' ' if company else ''}{name}", body, email)
+        send_mail(f"【ATO LP】無料相談のお問い合わせ：{company + ' ' if company else ''}{name}", body, email)
         return jsonify(ok=True)
     except Exception:
         app.logger.exception('apply mail failed')
