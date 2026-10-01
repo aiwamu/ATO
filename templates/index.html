@@ -1427,16 +1427,19 @@ window.ATO_MAP={step:1.8,latTop:76,latBot:-54,lon0:-40.0,cols:200,rows:73,hex:["
     [cD,cF,cT].forEach(function(cv){var cw=Math.round(W*dpr),ch=Math.round(H*dpr); if(cv.width!==cw)cv.width=cw; if(cv.height!==ch)cv.height=ch;});
     view=reduce?{x:0,y:0,w:W,h:H}:{x:0,y:top,w:W,h:Math.max(160,H-top-bot)};
     var jp=frac(36.2,136.5);
-    var zW=narrow?clamp(view.h*1.18*ASPECT/W,1.7,3.2):Math.min(1.05,view.h*1.12*ASPECT/W);
+    // the world is always wider than the screen, so a continent never shows twice
+    var zW=narrow?clamp(view.h*1.18*ASPECT/W,1.7,3.2):clamp(view.h*1.75*ASPECT/W,1.6,2.6);
+    CAM.narrow=narrow; CAM.zMin=narrow?1.25:1.35;
     CAM.close={cx:jp[0],cy:jp[1]-.02,z:narrow?7:4.4};
-    CAM.world={cx:narrow?frac(0,98)[0]:0.5,cy:narrow?frac(16,0)[1]:0.47,z:zW};
+    CAM.world={cx:narrow?frac(0,98)[0]:0.5,cy:narrow?frac(16,0)[1]:0.47,z:narrow?zW:Math.max(1.02,Math.min(1.05,view.h*1.12*ASPECT/W))};
     // unwrapped longitudes: the camera keeps heading east and comes back to Japan from the west
-    var amer={cx:frac(0,narrow?-98:-95)[0],cy:frac(narrow?33:30,0)[1],z:narrow?zW*1.0:zW*1.6};
-    var eur={cx:frac(0,narrow?12:15)[0]+1,cy:frac(narrow?46:44,0)[1],z:narrow?zW*1.1:zW*1.8};
-    var asia={cx:frac(0,narrow?95:88)[0]+1,cy:frac(narrow?20:18,0)[1],z:narrow?zW*1.0:zW*1.5};
-    var home={cx:jp[0]+1,cy:jp[1]+.03,z:narrow?zW*1.2:zW*1.35};
-    KEYS=[{p:0,c:CAM.close,t:56,r:-9},{p:.10,c:CAM.close,t:56,r:-9},{p:.34,c:amer,t:0,r:0},{p:.52,c:eur,t:0,r:0},
-          {p:.72,c:asia,t:0,r:0},{p:.90,c:home,t:14,r:0},{p:1.01,c:home,t:14,r:0}];
+    var amer={cx:frac(0,narrow?-98:-100)[0],cy:frac(narrow?33:34,0)[1],z:narrow?zW*1.0:zW*1.15};
+    var eur={cx:frac(0,narrow?12:14)[0]+1,cy:frac(narrow?46:47,0)[1],z:narrow?zW*1.1:zW*1.45};
+    var asia={cx:frac(0,narrow?95:100)[0]+1,cy:frac(narrow?20:16,0)[1],z:narrow?zW*1.0:zW*1.2};
+    var home={cx:jp[0]+1,cy:jp[1]+.03,z:narrow?zW*1.2:zW*1.3};
+    // a gentle, steady tilt while cruising so the map is seen at an angle
+    KEYS=[{p:0,c:CAM.close,t:56,r:-9},{p:.10,c:CAM.close,t:56,r:-9},{p:.34,c:amer,t:18,r:-2},{p:.52,c:eur,t:20,r:2},
+          {p:.72,c:asia,t:18,r:-2},{p:.90,c:home,t:22,r:0},{p:1.01,c:home,t:22,r:0}];
     camS=null;
     lastKey=''; lastTf=''; lastTo='';
     if(reduce){box.style.transform='';}
@@ -1448,15 +1451,15 @@ window.ATO_MAP={step:1.8,latTop:76,latBot:-54,lon0:-40.0,cols:200,rows:73,hex:["
     var A=KEYS[i],B=KEYS[i+1], t=ease(clamp((p-A.p)/(B.p-A.p),0,1)), c=mixCam(A.c,B.c,t);
     // each leg lifts off, cruises and lands, like a flight
     var hop=Math.abs(B.c.cx-A.c.cx)+Math.abs(B.c.cy-A.c.cy), arc=Math.sin(Math.PI*t);
-    c.z*=1-clamp(hop*1.15,0,.45)*arc;
-    return {c:c,th:A.t+(B.t-A.t)*t+clamp(hop*30,0,10)*arc,rz:A.r+(B.r-A.r)*t};
+    c.z=Math.max(CAM.zMin,c.z*(1-clamp(hop*.8,0,CAM.narrow?.3:.22)*arc));
+    return {c:c,th:A.t+(B.t-A.t)*t+clamp(hop*20,0,6)*arc,rz:A.r+(B.r-A.r)*t};
   }
   var camS=null;
   function smoothCam(dt){
     var tg=camera(pS);
     if(!camS||reduce||!dt){camS={cx:tg.c.cx,cy:tg.c.cy,lz:Math.log(tg.c.z),th:tg.th,rz:tg.rz};}
     else{
-      var k=1-Math.exp(-dt/170);
+      var k=1-Math.exp(-dt/320);
       camS.cx+=(tg.c.cx-camS.cx)*k; camS.cy+=(tg.c.cy-camS.cy)*k; camS.lz+=(Math.log(tg.c.z)-camS.lz)*k;
       camS.th+=(tg.th-camS.th)*k; camS.rz+=(tg.rz-camS.rz)*k;
     }
@@ -1574,9 +1577,11 @@ window.ATO_MAP={step:1.8,latTop:76,latBot:-54,lon0:-40.0,cols:200,rows:73,hex:["
     drawDots(cam,jpLevel);
     var o=proj(cam,ORIGIN.lat,ORIGIN.lon), gold='#FFD21F';
     if(!reduce){
-      var tf='perspective(1000px) rotateX('+cv.th.toFixed(2)+'deg) rotateZ('+cv.rz.toFixed(2)+'deg)';
+      // slow diagonal drift on the compositor (no redraw), plus the tilt
+      var dx=Math.sin(now/9000)*W*.012, dy=Math.sin(now/12500+1.3)*H*.014;
+      var tf='perspective(1100px) rotateX('+cv.th.toFixed(2)+'deg) rotateZ('+cv.rz.toFixed(2)+'deg) translate('+dx.toFixed(1)+'px,'+dy.toFixed(1)+'px) scale(1.04)';
       if(tf!==lastTf){lastTf=tf; box.style.transform=tf;}
-      var to=o[0].toFixed(1)+'px '+o[1].toFixed(1)+'px'; if(to!==lastTo){lastTo=to; box.style.transformOrigin=to;}
+      var to=clamp(o[0],view.x,view.x+view.w).toFixed(1)+'px '+clamp(o[1],view.y,view.y+view.h).toFixed(1)+'px'; if(to!==lastTo){lastTo=to; box.style.transformOrigin=to;}
     }
     gF.setTransform(dpr,0,0,dpr,0,0); gF.clearRect(0,0,W,H);
     var needT=!reduce&&((aS>0&&pS<.2)||pS>.9);
