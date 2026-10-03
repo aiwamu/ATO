@@ -259,23 +259,13 @@ mark{background:var(--cap);color:var(--cap-ink);padding:0 .12em;border-radius:4p
 .fill .key.on,.no-js .fill .key{background-size:100% 32%}
 
 /* ---------- reach: pinned map story ---------- */
-.reach{position:relative;z-index:1;margin-inline:calc(-1*var(--pad));height:420vh}
+.reach{position:relative;z-index:1;margin-inline:calc(-1*var(--pad));height:380vh}
 .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
 .st-map{position:absolute;inset:0;will-change:transform}
 .st-map canvas,#rThr{position:absolute;inset:0;width:100%;height:100%;display:block}
 #rThr{z-index:1;pointer-events:none}
 #rSky{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1;pointer-events:none}
-.stage{cursor:crosshair}
-.samurai{position:absolute;right:max(var(--pad),calc((100% - 1120px)/2));bottom:calc(118px + env(safe-area-inset-bottom,0px));z-index:3;display:flex;align-items:flex-end;gap:10px;pointer-events:none}
-.samurai svg{width:76px;height:auto;display:block;filter:drop-shadow(0 8px 14px rgba(0,0,0,.35));transform-origin:50% 100%;animation:sm-bob 2.8s ease-in-out infinite}
-.samurai.hop svg{animation:sm-hop .6s cubic-bezier(.2,.8,.2,1),sm-bob 2.8s ease-in-out .6s infinite}
-@keyframes sm-bob{50%{transform:translateY(-3px)}}
-@keyframes sm-hop{0%{transform:none}30%{transform:translateY(-16px) scale(.95,1.06)}62%{transform:translateY(0) scale(1.06,.94)}100%{transform:none}}
-.sm-say{position:relative;align-self:stretch;margin-bottom:62px}
-.sm-say p{position:absolute;right:0;bottom:0;white-space:nowrap;font-weight:800;font-size:.86rem;line-height:1.35;color:#10162E;background:#fff;padding:9px 14px;border-radius:14px;box-shadow:0 10px 24px -10px rgba(0,0,0,.55);opacity:0;transform:translateY(6px) scale(.9);transform-origin:100% 100%;transition:opacity .3s ease,transform .45s cubic-bezier(.2,.8,.2,1)}
-.sm-say p.on{opacity:1;transform:none}
-.sm-say p::after{content:"";position:absolute;right:-6px;bottom:11px;border:7px solid transparent;border-left-color:#fff;border-right:0}
-.rm .samurai,.rm #rSky{display:none}
+.rm #rSky{display:none}
 .rm #rThr{display:none}
 #reacts{position:absolute;inset:0;pointer-events:none}
 .st-text{position:absolute;left:0;right:0;top:0;z-index:2;padding:calc(92px + env(safe-area-inset-top,0px)) var(--pad) 28px;pointer-events:none;background:linear-gradient(color-mix(in srgb,var(--bg) 88%,transparent) 62%,transparent)}
@@ -329,14 +319,9 @@ mark{background:var(--cap);color:var(--cap-ink);padding:0 .12em;border-radius:4p
 .rm .st-map{position:relative;aspect-ratio:2.3;max-width:100%;margin-block:24px}
 .rm .count{opacity:1;transform:none}
 @media (max-width:860px){
-  .reach{height:420vh}
+  .reach{height:360vh}
   .st-text{padding-top:calc(84px + env(safe-area-inset-top,0px))}
   .beats{min-height:8.6em}
-  .samurai{bottom:calc(104px + env(safe-area-inset-bottom,0px));flex-direction:column;align-items:flex-end;gap:6px}
-  .samurai svg{width:50px}
-  .sm-say{margin:0;height:0;width:150px}
-  .sm-say p{white-space:normal;width:max-content;max-width:150px;font-size:.74rem;padding:7px 10px;border-radius:12px;bottom:6px}
-  .sm-say p::after{right:18px;bottom:-6px;border:6px solid transparent;border-top-color:#fff;border-bottom:0}
   .rm .st-map{aspect-ratio:1}
 }
 
@@ -575,7 +560,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
 <nav class="nav" aria-label="Main">
   <div class="wrap nav-in">
-    <a class="logo" href="#reach"><b>AT<i>O</i></b><small>JAPAN TO THE WORLD</small></a>
+    <a class="logo" href="#top"><b>AT<i>O</i></b><small>JAPAN TO THE WORLD</small></a>
     <div class="nav-links">
       <a href="#services"><span class="ja">サービス</span><span class="en">Services</span></a>
       <a href="#why"><span class="ja">強み</span><span class="en">Why ATO</span></a>
@@ -589,74 +574,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     </div>
   </div>
 </nav>
-
-<section class="reach" id="reach" data-tone="night" aria-labelledby="beat1">
-  <div class="stage" id="stage">
-    <div class="st-map" id="stMap">
-      <canvas id="rDots" aria-hidden="true"></canvas>
-      <canvas id="rFx" aria-hidden="true"></canvas>
-      <div id="reacts" aria-hidden="true"></div>
-    </div>
-    <canvas id="rThr" aria-hidden="true"></canvas>
-    <canvas id="rSky" aria-hidden="true"></canvas>
-    <div class="st-text">
-      <div class="st-in">
-        <p class="hud"><span class="live" aria-hidden="true"></span><span id="hudTxt">TOKYO, JAPAN</span></p>
-        <div class="beats">
-          <div class="beat on" id="beat1">
-            <h2><span class="ja"><span class="nb">日本には、</span><span class="nb">世界がまだ知らない</span><span class="nb">一流がある。</span></span><span class="en">Japan is full of world-class things the world has yet to find.</span></h2>
-          </div>
-          <div class="beat">
-            <h2><span class="ja"><span class="nb">伝え方ひとつで、</span><span class="nb">一本の動画は</span><span class="nb">海をこえる。</span></span><span class="en">Tell it the right way, and one video crosses the ocean.</span></h2>
-          </div>
-          <div class="beat">
-            <h2><span class="ja"><span class="nb">海の向こうで、</span><span class="nb">誰かが手を止める。</span></span><span class="en">Across the ocean, someone stops scrolling.</span></h2>
-            <p><span class="ja">いいね、コメント、シェア、保存。世界中から反応が返ってくる。</span><span class="en">Likes, comments, shares and saves come back from all over the world.</span></p>
-          </div>
-          <div class="beat">
-            <h2><span class="ja"><span class="nb">気に入ったものは、</span><span class="nb">海をこえて届く。</span></span><span class="en">What they love ships across the ocean.</span></h2>
-            <p><span class="ja">多言語のWebサイトと越境ECで、見つけてもらうところから買ってもらうところまでをつなぐ。</span><span class="en">Multilingual websites and cross-border e-commerce connect being found with being bought.</span></p>
-          </div>
-          <div class="beat">
-            <h2><span class="ja"><span class="nb">そして今度は、</span><span class="nb">世界が日本に</span><span class="nb">やってくる。</span></span><span class="en">Then the world comes to Japan.</span></h2>
-            <p><span class="ja">保存した動画を手に、あなたのお店を目指して。</span><span class="en">Saved video in hand, headed for your door.</span></p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="st-foot">
-      <div class="st-in">
-        <div class="count" id="count">
-          <span class="lbl"><span class="ja">総再生回数</span><span class="en">Total views</span></span>
-          <b class="big" id="countBig"><span class="ja">1<small>億回超</small></span><span class="en">100<small>M+</small></span></b>
-          <span class="count-sub">
-            <span><b><span class="ja">350万人</span><span class="en">3.5M</span></b><span class="ja">累計フォロワー</span><span class="en">total followers</span></span>
-            <span><b><span class="ja">3,000万人</span><span class="en">30M</span></b><span class="ja">最高月間リーチ</span><span class="en">peak monthly reach</span></span>
-          </span>
-        </div>
-        <div class="beat-nav">
-          <p class="bn-hint" id="bnHint"><span class="ja">スクロールで次へ</span><span class="en">Scroll for next</span><i aria-hidden="true">↓</i></p>
-          <div class="bn-row">
-            <span class="bn-count" aria-hidden="true"><b id="bnNow">1</b> / 5</span>
-            <div class="beat-ticks" id="beatTicks">
-              <button type="button" class="on" data-scene="0" aria-label="シーン1へ"></button><button type="button" data-scene="1" aria-label="シーン2へ"></button><button type="button" data-scene="2" aria-label="シーン3へ"></button><button type="button" data-scene="3" aria-label="シーン4へ"></button><button type="button" data-scene="4" aria-label="シーン5へ"></button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="samurai" id="samurai" aria-hidden="true">
-      <div class="sm-say" id="smSay">
-        <p class="on"><span class="ja">拙者、日本代表でござる。</span><span class="en">Samurai on duty. Team Japan.</span></p>
-        <p><span class="ja">いざ、海の向こうへ投稿！</span><span class="en">Posting across the sea. Charge!</span></p>
-        <p><span class="ja">いいね、かたじけない！</span><span class="en">Thank you kindly for the likes!</span></p>
-        <p><span class="ja">お届け物、出陣でござる！</span><span class="en">Parcels, march out!</span></p>
-        <p><span class="ja">ようこそ日本へ！地図をタップで花火</span><span class="en">Welcome to Japan! Tap the map for fireworks</span></p>
-      </div>
-      <svg viewBox="0 0 64 80" role="img"><ellipse cx="32" cy="77" rx="17" ry="2.6" fill="rgba(0,0,0,.28)"/><g transform="rotate(-30 30 50)"><rect x="6" y="48.5" width="40" height="3" rx="1.5" fill="#DCE2EC"/><rect x="40" y="47" width="11" height="6" rx="1.4" fill="#2B2B2B"/><rect x="38.5" y="45.8" width="2.6" height="8.4" rx="1" fill="#FFD21F"/></g><path d="M20 55h24l5 19H36l-4-9-4 9H15z" fill="#3A3F5C"/><path d="M17.5 40.5Q32 33.5 46.5 40.5L44 57H20z" fill="#1F3A8A"/><path d="M27.5 37.5 32 47l4.5-9.5" fill="none" stroke="#fff" stroke-width="2.6" stroke-linejoin="round"/><rect x="19.5" y="51" width="25" height="4.4" fill="#FFD21F"/><path d="M44.5 43 52 35" stroke="#1F3A8A" stroke-width="6.5" stroke-linecap="round"/><rect x="48.5" y="21.5" width="9.5" height="15.5" rx="2.2" fill="#10162E" stroke="#FFD21F" stroke-width="1.3"/><circle cx="53.2" cy="25" r="1.1" fill="#FF5A5F"/><path d="M19.5 44 15 50" stroke="#1F3A8A" stroke-width="6.5" stroke-linecap="round"/><circle cx="32" cy="24.5" r="12.2" fill="#F6D5B5"/><path d="M19.9 25.5Q19.5 12.5 32 12q12.5.5 12.1 13.5-1.6-6.5-6.1-7.6H26q-4.5 1.1-6.1 7.6z" fill="#1B1B1B"/><rect x="29" y="5" width="6" height="8" rx="2.2" fill="#1B1B1B"/><rect x="27.2" y="7.6" width="9.6" height="2.3" rx="1.1" fill="#1B1B1B"/><rect x="20.2" y="17.6" width="23.6" height="3.4" fill="#E8394B"/><path d="M20.8 19.3 14.5 15.8M20.8 19.3l-6.3 3.4" stroke="#E8394B" stroke-width="2.4" stroke-linecap="round"/><path d="M25.6 25.6 29 24.6M35 24.6l3.4 1" stroke="#1B1B1B" stroke-width="1.7" stroke-linecap="round"/><circle cx="27.4" cy="27.2" r="1.15" fill="#1B1B1B"/><circle cx="36.6" cy="27.2" r="1.15" fill="#1B1B1B"/><path d="M29.4 31.2q2.6 2.1 5.2 0" fill="none" stroke="#B5523B" stroke-width="1.5" stroke-linecap="round"/><circle cx="24.6" cy="29.6" r="1.9" fill="#F29C9C" opacity=".75"/><circle cx="39.4" cy="29.6" r="1.9" fill="#F29C9C" opacity=".75"/></svg>
-    </div>
-  </div>
-</section>
 
 <header class="hero wrap" id="top" data-tone="day">
   <div class="hero-copy">
@@ -771,6 +688,64 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   <p class="fill en">Omotenashi, hospitality that needs no words. The samurai spirit, still alive today. Anime the whole world is hooked on. Craft passed down for centuries. This country is full of stories the world longs for.<br><span class="key">All that’s left is to share them.</span></p>
 </div>
 
+
+<section class="reach" id="reach" data-tone="night" aria-labelledby="beat1">
+  <div class="stage" id="stage">
+    <div class="st-map" id="stMap">
+      <canvas id="rDots" aria-hidden="true"></canvas>
+      <canvas id="rFx" aria-hidden="true"></canvas>
+      <div id="reacts" aria-hidden="true"></div>
+    </div>
+    <canvas id="rThr" aria-hidden="true"></canvas>
+    <canvas id="rSky" aria-hidden="true"></canvas>
+    <div class="st-text">
+      <div class="st-in">
+        <p class="hud"><span class="live" aria-hidden="true"></span><span id="hudTxt">TOKYO, JAPAN</span></p>
+        <div class="beats">
+          <div class="beat on" id="beat1">
+            <h2><span class="ja"><span class="nb">日本には、</span><span class="nb">世界がまだ知らない</span><span class="nb">一流がある。</span></span><span class="en">Japan is full of world-class things the world has yet to find.</span></h2>
+          </div>
+          <div class="beat">
+            <h2><span class="ja"><span class="nb">伝え方ひとつで、</span><span class="nb">一本の動画は</span><span class="nb">海をこえる。</span></span><span class="en">Tell it the right way, and one video crosses the ocean.</span></h2>
+          </div>
+          <div class="beat">
+            <h2><span class="ja"><span class="nb">海の向こうで、</span><span class="nb">誰かが手を止める。</span></span><span class="en">Across the ocean, someone stops scrolling.</span></h2>
+            <p><span class="ja">いいね、コメント、シェア、保存。世界中から反応が返ってくる。</span><span class="en">Likes, comments, shares and saves come back from all over the world.</span></p>
+          </div>
+          <div class="beat">
+            <h2><span class="ja"><span class="nb">気に入ったものは、</span><span class="nb">海をこえて届く。</span></span><span class="en">What they love ships across the ocean.</span></h2>
+            <p><span class="ja">多言語のWebサイトと越境ECで、見つけてもらうところから買ってもらうところまでをつなぐ。</span><span class="en">Multilingual websites and cross-border e-commerce connect being found with being bought.</span></p>
+          </div>
+          <div class="beat">
+            <h2><span class="ja"><span class="nb">そして今度は、</span><span class="nb">世界が日本に</span><span class="nb">やってくる。</span></span><span class="en">Then the world comes to Japan.</span></h2>
+            <p><span class="ja">保存した動画を手に、あなたのお店を目指して。</span><span class="en">Saved video in hand, headed for your door.</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="st-foot">
+      <div class="st-in">
+        <div class="count" id="count">
+          <span class="lbl"><span class="ja">総再生回数</span><span class="en">Total views</span></span>
+          <b class="big" id="countBig"><span class="ja">1<small>億回超</small></span><span class="en">100<small>M+</small></span></b>
+          <span class="count-sub">
+            <span><b><span class="ja">350万人</span><span class="en">3.5M</span></b><span class="ja">累計フォロワー</span><span class="en">total followers</span></span>
+            <span><b><span class="ja">3,000万人</span><span class="en">30M</span></b><span class="ja">最高月間リーチ</span><span class="en">peak monthly reach</span></span>
+          </span>
+        </div>
+        <div class="beat-nav">
+          <p class="bn-hint" id="bnHint"><span class="ja">スクロールで次へ</span><span class="en">Scroll for next</span><i aria-hidden="true">↓</i></p>
+          <div class="bn-row">
+            <span class="bn-count" aria-hidden="true"><b id="bnNow">1</b> / 5</span>
+            <div class="beat-ticks" id="beatTicks">
+              <button type="button" class="on" data-scene="0" aria-label="シーン1へ"></button><button type="button" data-scene="1" aria-label="シーン2へ"></button><button type="button" data-scene="2" aria-label="シーン3へ"></button><button type="button" data-scene="3" aria-label="シーン4へ"></button><button type="button" data-scene="4" aria-label="シーン5へ"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <main class="wrap">
 
@@ -1399,7 +1374,7 @@ window.ATO_MAP={step:1.8,latTop:76,latBot:-54,lon0:-40.0,cols:200,rows:73,hex:["
   var MAP=window.ATO_MAP;
   var box=$('stMap'), cD=$('rDots'), cF=$('rFx'), cT=$('rThr'), gD=cD.getContext('2d'), gF=cF.getContext('2d'), gT=cT.getContext('2d'), reactsEl=$('reacts');
   var stText=document.querySelector('.st-text'), stFoot=document.querySelector('.st-foot');
-  var cS=$('rSky'), gS=cS.getContext('2d'), smEl=$('samurai'), smSays=[].slice.call(document.querySelectorAll('#smSay p'));
+  var cS=$('rSky'), gS=cS.getContext('2d');
   var beats=[].slice.call(document.querySelectorAll('.beat')), ticks=[].slice.call(document.querySelectorAll('#beatTicks button')), bnNow=$('bnNow');
   var countEl=$('count'), bigJa=document.querySelector('#countBig .ja'), bigEn=document.querySelector('#countBig .en'), hudTxt=$('hudTxt');
   /* scenes: scrolling picks the scene, time plays it, so nothing is skipped */
@@ -1413,9 +1388,15 @@ window.ATO_MAP={step:1.8,latTop:76,latBot:-54,lon0:-40.0,cols:200,rows:73,hex:["
     ticks.forEach(function(t,k){t.classList.toggle('on',k<=b); if(k===b)t.setAttribute('aria-current','step'); else t.removeAttribute('aria-current');});
     bnNow.textContent=String(b+1);
     hudTxt.textContent=HUD[b];
-    smSays.forEach(function(el,k){el.classList.toggle('on',k===b);});
-    if(!reduce){smEl.classList.remove('hop'); void smEl.offsetWidth; smEl.classList.add('hop');}
   }
+  var CENT=[.05,.265,.455,.645,.86], HALF=[.12,.095,.095,.095,.12];
+  function flowBeats(){
+    beats.forEach(function(el,k){
+      var d=pS-CENT[k], o=clamp(1-(Math.abs(d)-HALF[k]*.35)/(HALF[k]*.58),0,1);
+      el.style.opacity=o.toFixed(3); el.style.transform='translateY('+(-d*320).toFixed(1)+'px)'; el.style.visibility=o>0?'visible':'hidden';
+    });
+  }
+  if(!reduce)beats.forEach(function(el){el.style.transition='none';});
   function goScene(k){
     var y=reachSec.getBoundingClientRect().top+window.pageYOffset+STOP[k]*(reachSec.offsetHeight-(SH||window.innerHeight));
     window.scrollTo({top:Math.round(y)+(k?2:0),behavior:reduce?'auto':'smooth'});
@@ -1472,8 +1453,8 @@ window.ATO_MAP={step:1.8,latTop:76,latBot:-54,lon0:-40.0,cols:200,rows:73,hex:["
     var asia={cx:frac(0,narrow?95:100)[0]+1,cy:frac(narrow?20:16,0)[1],z:narrow?zW*1.0:zW*1.2};
     var home={cx:jp[0]+1,cy:jp[1]+.03,z:narrow?zW*1.2:zW*1.3};
     // a gentle, steady tilt while cruising so the map is seen at an angle
-    KEYS=[{p:0,c:CAM.close,t:56,r:-9},{p:.10,c:CAM.close,t:56,r:-9},{p:.34,c:amer,t:18,r:-2},{p:.52,c:eur,t:20,r:2},
-          {p:.72,c:asia,t:18,r:-2},{p:.90,c:home,t:22,r:0},{p:1.01,c:home,t:22,r:0}];
+    KEYS=[{p:0,c:CAM.close,t:52,r:-8},{p:.08,c:CAM.close,t:52,r:-8},{p:.34,c:amer,t:44,r:-5},{p:.52,c:eur,t:46,r:4},
+          {p:.72,c:asia,t:44,r:-4},{p:.90,c:home,t:40,r:0},{p:1.01,c:home,t:40,r:0}];
     camS=null;
     lastKey=''; lastTf=''; lastTo='';
     if(reduce){box.style.transform='';}
@@ -1482,7 +1463,7 @@ window.ATO_MAP={step:1.8,latTop:76,latBot:-54,lon0:-40.0,cols:200,rows:73,hex:["
   function camera(p){
     if(reduce)return {c:CAM.world,th:0,rz:0};
     var i=0; while(i<KEYS.length-2&&p>KEYS[i+1].p)i++;
-    var A=KEYS[i],B=KEYS[i+1], t=ease(clamp((p-A.p)/(B.p-A.p),0,1)), c=mixCam(A.c,B.c,t);
+    var A=KEYS[i],B=KEYS[i+1], u=clamp((p-A.p)/(B.p-A.p),0,1), t=.3*ease(u)+.7*u, c=mixCam(A.c,B.c,t);
     // each leg lifts off, cruises and lands, like a flight
     var hop=Math.abs(B.c.cx-A.c.cx)+Math.abs(B.c.cy-A.c.cy), arc=Math.sin(Math.PI*t);
     c.z=Math.max(CAM.zMin,c.z*(1-clamp(hop*.8,0,CAM.narrow?.3:.22)*arc));
@@ -1493,7 +1474,7 @@ window.ATO_MAP={step:1.8,latTop:76,latBot:-54,lon0:-40.0,cols:200,rows:73,hex:["
     var tg=camera(pS);
     if(!camS||reduce||!dt){camS={cx:tg.c.cx,cy:tg.c.cy,lz:Math.log(tg.c.z),th:tg.th,rz:tg.rz};}
     else{
-      var k=1-Math.exp(-dt/320);
+      var k=1-Math.exp(-dt/240);
       camS.cx+=(tg.c.cx-camS.cx)*k; camS.cy+=(tg.c.cy-camS.cy)*k; camS.lz+=(Math.log(tg.c.z)-camS.lz)*k;
       camS.th+=(tg.th-camS.th)*k; camS.rz+=(tg.rz-camS.rz)*k;
     }
@@ -1592,7 +1573,7 @@ window.ATO_MAP={step:1.8,latTop:76,latBot:-54,lon0:-40.0,cols:200,rows:73,hex:["
       return true;
     });
   }
-  var pS=0,aS=0,lastT=0,running=false,raf=0,countTxt='',hintReady=false,hint=$('bnHint');
+  var pS=0,aS=0,lastT=0,running=false,raf=0,countTxt='',hintReady=false,hint=$('bnHint'),bank=0,lastCx=null,vel=0;
   var bursts=[], boxes=[], planes=[], lastPop=0, lastBox=0, lastPlane=0, frameNo=0, tDirty=true;
   function sectionProgress(){
     var r2=reachSec.getBoundingClientRect();
@@ -1607,13 +1588,15 @@ window.ATO_MAP={step:1.8,latTop:76,latBot:-54,lon0:-40.0,cols:200,rows:73,hex:["
   var TOKF=frac(ORIGIN.lat,ORIGIN.lon);
   function render(now,dt){
     if(!W||!H)return;
-    var cv=smoothCam(dt), cam=cv.c, jpLevel=reduce?1:clamp(.3+.7*(pS/.08),0,1);
+    var cv=smoothCam(dt), cam=cv.c; if(lastCx===null)lastCx=cam.cx; var jpLevel=reduce?1:clamp(.3+.7*(pS/.08),0,1);
     drawDots(cam,jpLevel);
     var o=proj(cam,ORIGIN.lat,ORIGIN.lon), gold='#FFD21F';
     if(!reduce){
       // slow diagonal drift on the compositor (no redraw), plus the tilt
       var dx=Math.sin(now/9000)*W*.012, dy=Math.sin(now/12500+1.3)*H*.014;
-      var tf='perspective(1100px) rotateX('+cv.th.toFixed(2)+'deg) rotateZ('+cv.rz.toFixed(2)+'deg) translate('+dx.toFixed(1)+'px,'+dy.toFixed(1)+'px) scale(1.04)';
+      bank+=(clamp(-(cam.cx-lastCx)/Math.max(1,dt)*5200,-7,7)-bank)*(1-Math.exp(-dt/400)); lastCx=cam.cx;
+      var sc=1.04+clamp((cv.th-20)/36,0,1)*.26;
+      var tf='perspective(1100px) rotateX('+cv.th.toFixed(2)+'deg) rotateZ('+(cv.rz+bank).toFixed(2)+'deg) translate('+dx.toFixed(1)+'px,'+dy.toFixed(1)+'px) scale('+sc.toFixed(3)+')';
       if(tf!==lastTf){lastTf=tf; box.style.transform=tf;}
       var to=clamp(o[0],view.x,view.x+view.w).toFixed(1)+'px '+clamp(o[1],view.y,view.y+view.h).toFixed(1)+'px'; if(to!==lastTo){lastTo=to; box.style.transformOrigin=to;}
     }
@@ -1726,17 +1709,13 @@ window.ATO_MAP={step:1.8,latTop:76,latBot:-54,lon0:-40.0,cols:200,rows:73,hex:["
     var dt=lastT?Math.min(64,now-lastT):16; lastT=now;
     var sp=sectionProgress(), k=1-Math.pow(1-.14,dt/16.7);
     aS+=(sp.a-aS)*k; if(Math.abs(sp.a-aS)<.0004)aS=sp.a;
-    var sc=sp.a<1?0:sceneFor(sp.p);
-    var target=TARGET[sc];
-    if(pS<target){
-      var r2=0; while(r2<TARGET.length-1&&pS>=TARGET[r2])r2++;
-      var from=r2?TARGET[r2-1]:0, v=(TARGET[r2]-from)/DUR[r2]*(1+Math.max(0,sc-r2)*.5);
-      pS=Math.min(target,pS+v*dt/1000);
-    } else if(pS>target){ pS=Math.max(target,pS-.7*dt/1000); }
-    // captions follow what is on screen, not where the scroll is
-    var ds=0; while(ds<NS-1&&pS>TARGET[ds]+1e-4)ds++;
+    var goal=sp.a<1?Math.min(sp.p,.02):sp.p, prev=pS;
+    pS+=(goal-pS)*(1-Math.exp(-dt/150)); if(Math.abs(goal-pS)<.0002)pS=goal;
+    vel+=((Math.abs(pS-prev)/Math.max(1,dt))*1000-vel)*(1-Math.exp(-dt/120));
+    flowBeats();
+    var ds=sceneFor(pS); if(ds>NS-1)ds=NS-1;
     if(ds!==scene){scene=ds; setScene(ds);}
-    var ready=pS===target&&sc<NS;
+    var ready=pS<.97;
     if(ready!==hintReady){hintReady=ready; hint.classList.toggle('ready',ready);}
     render(now,dt);
     raf=requestAnimationFrame(loop);
@@ -1744,7 +1723,7 @@ window.ATO_MAP={step:1.8,latTop:76,latBot:-54,lon0:-40.0,cols:200,rows:73,hex:["
 
   /* ---------- sakura, fireworks (a bit of fun, kept calm) ---------- */
   var PET=[], petSeeded=false; for(var pi=0;pi<16;pi++)PET.push({live:false});
-  var FW=[], lastFw=0, lastTap=0;
+  var FW=[], lastFw=0, lastTap=0, STREAK=[]; for(var si=0;si<22;si++)STREAK.push({r:.05+Math.random()*1.1,a:Math.random()*6.283,v:Math.random()});
   function newPetal(p,init){p.x=Math.random()*W*1.1-W*.05; p.y=init?Math.random()*H:-14-Math.random()*60; p.vx=-.3-Math.random()*.35; p.vy=.4+Math.random()*.45; p.r=Math.random()*6.283; p.vr=(Math.random()-.5)*.035; p.s=4.5+Math.random()*3.5; p.ph=Math.random()*6.283; p.live=true;}
   function launch(x,y,rise){
     var cols=['#FFD21F','#FF8FB1','#FFFFFF','#7FD6FF'], c1=cols[Math.floor(Math.random()*4)], c2=cols[Math.floor(Math.random()*4)], n=44, parts=[];
@@ -1766,6 +1745,17 @@ window.ATO_MAP={step:1.8,latTop:76,latBot:-54,lon0:-40.0,cols:200,rows:73,hex:["
       gS.fillStyle='#FF9DBA'; gS.beginPath(); gS.arc(0,p.s*.55,p.s*.18,0,6.283); gS.fill(); gS.restore();
     }
     if(want)petSeeded=true;
+    // wind streaks while flying fast
+    var wind=clamp((vel-.05)/.35,0,1)*.5;
+    if(wind>.01){
+      gS.strokeStyle='#ffffff'; gS.lineCap='round';
+      for(var w2=0;w2<STREAK.length;w2++){
+        var st=STREAK[w2]; st.r+=(.9+st.v)*vel*dt*.0016; if(st.r>1.25){st.r=.05+Math.random()*.15; st.a=Math.random()*6.283; st.v=Math.random();}
+        var cx2=W*.5, cy2=H*.42, R2=Math.max(W,H)*.75, x1=cx2+Math.cos(st.a)*st.r*R2, y1=cy2+Math.sin(st.a)*st.r*R2*.7, len=(30+60*st.v)*wind*2;
+        gS.globalAlpha=wind*.35*Math.min(1,st.r*2.5); gS.lineWidth=1.1; gS.beginPath(); gS.moveTo(x1,y1); gS.lineTo(x1+Math.cos(st.a)*len,y1+Math.sin(st.a)*len*.7); gS.stroke();
+      }
+      gS.globalAlpha=1;
+    }
     // the world arrives: fireworks over Japan now and then
     if(pS>.86&&now-lastFw>1300+Math.random()*900){lastFw=now; launch(clamp(o[0]+(Math.random()-.5)*W*.32,40,W-40),clamp(o[1]-H*(.1+Math.random()*.16),view.y+40,H-60),520);}
     gS.globalCompositeOperation='lighter';
@@ -1788,46 +1778,6 @@ window.ATO_MAP={step:1.8,latTop:76,latBot:-54,lon0:-40.0,cols:200,rows:73,hex:["
     if(!running)startMap();
   });
 
-  /* ---------- one scroll = one scene ---------- */
-  var stepping=false, stepEnd=0, lastWheel=0, lastMag=0, used=false;
-  function reachGeo(){var sh=stageEl.clientHeight||window.innerHeight, top=reachSec.getBoundingClientRect().top+window.pageYOffset; return {top:top,sh:sh,span:Math.max(1,reachSec.offsetHeight-sh)};}
-  function first(g){return g.top<g.sh*.5;}
-  function stopY(k,g){return k===0&&first(g)?0:g.top+STOP[k]*g.span+(k?2:0);}
-  function inZone(g,dir){var y=window.pageYOffset; return y>=(first(g)?0:g.top-2)&&y<=g.top+g.span+(dir<0?g.sh:0)+2;}
-  function glideTo(y,ms){
-    var y0=window.pageYOffset, dy=y-y0; if(Math.abs(dy)<2)return;
-    var html=document.documentElement, prev=html.style.scrollBehavior, t0=null; html.style.scrollBehavior='auto'; stepping=true;
-    function f(ts){if(t0===null)t0=ts; var u=Math.min(1,(ts-t0)/ms); window.scrollTo(0,Math.round(y0+dy*ease(u))); if(u<1)requestAnimationFrame(f); else {stepping=false; stepEnd=performance.now(); html.style.scrollBehavior=prev;}}
-    requestAnimationFrame(f);
-  }
-  function step(dir){
-    var g=reachGeo(), y=window.pageYOffset, target=null, k;
-    if(dir>0){var from=Math.max(y,first(g)?g.top:y); for(k=0;k<NS;k++){var sy=stopY(k,g); if(sy>from+6){target=sy;break;}} if(target===null)target=g.top+g.span+g.sh;}
-    else{for(k=NS-1;k>=0;k--){var sy2=stopY(k,g); if(sy2<y-6){target=sy2;break;}} if(target===null)return false;}
-    glideTo(Math.round(target),dir>0&&target>g.top+g.span?900:760); return true;
-  }
-  if(!reduce){
-    window.addEventListener('wheel',function(e){
-      if(e.ctrlKey||Math.abs(e.deltaY)<Math.abs(e.deltaX))return;
-      var now=performance.now(), quiet=now-lastWheel, mag=Math.abs(e.deltaY)*(e.deltaMode===1?16:1); lastWheel=now;
-      var g=reachGeo();
-      if(!inZone(g,e.deltaY)){ if(now-stepEnd<500&&quiet<160){e.preventDefault(); lastMag=mag;} else used=false; return; }
-      e.preventDefault();
-      if(stepping||now-stepEnd<300){lastMag=mag; return;}
-      if(used&&quiet<170&&mag<=lastMag*1.6+2){lastMag=mag; return;}
-      lastMag=mag; if(mag<1)return;
-      used=step(e.deltaY>0?1:-1);
-    },{passive:false});
-    var ty=null, tz=false;
-    window.addEventListener('touchstart',function(e){if(e.touches.length!==1){ty=null;return;} tz=true; ty=e.touches[0].clientY;},{passive:true});
-    window.addEventListener('touchmove',function(e){if(ty===null)return; var d=ty-e.touches[0].clientY; if(Math.abs(d)<4)return; tz=inZone(reachGeo(),d); if(tz&&e.cancelable)e.preventDefault(); else ty=null;},{passive:false});
-    window.addEventListener('touchend',function(e){if(!tz||ty===null)return; var d=ty-e.changedTouches[0].clientY; ty=null; if(stepping)return; if(Math.abs(d)>26)step(d>0?1:-1);},{passive:true});
-    window.addEventListener('keydown',function(e){
-      var t=e.target, tag=t&&t.tagName; if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT'||(t&&t.isContentEditable))return;
-      var dir=(e.key==='ArrowDown'||e.key==='PageDown'||(e.key===' '&&!e.shiftKey))?1:(e.key==='ArrowUp'||e.key==='PageUp'||(e.key===' '&&e.shiftKey))?-1:0;
-      if(!dir||!inZone(reachGeo(),dir))return; e.preventDefault(); if(!stepping)step(dir);
-    });
-  }
   function startMap(){if(running||reduce)return; running=true; lastT=0; var sp=sectionProgress(); if(!aS)aS=sp.a; raf=requestAnimationFrame(loop);}
   function stopMap(){running=false; cancelAnimationFrame(raf);}
   var mapInView=false;
