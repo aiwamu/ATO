@@ -78,10 +78,12 @@ def sitemap():
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://ato-sns.com/</loc>
+    <lastmod>2026-10-03</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://ato-sns.com/en</loc>
+    <lastmod>2026-10-03</lastmod>
     <priority>0.8</priority>
   </url>
   <!-- 必要に応じて他ページも追加 -->
