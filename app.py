@@ -69,6 +69,11 @@ def book():
     # カレンダー予約はやめた。古いリンクから来た人は公式LINEへ
     return redirect(LINE_URL, code=302)
 
+@app.route('/preview')
+def preview():
+    # design trials before they go on the main page (not indexed)
+    return render_template('preview.html')
+
 @app.route('/en')
 def index_en():
     return render_template('index.html', lang='en')
