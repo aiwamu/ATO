@@ -62,7 +62,7 @@ def google_verify(token):
 def robots_txt():
     content = "User-agent: *\nAllow: /\nSitemap: https://ato-sns.com/sitemap.xml"
     return Response(content, status=200, mimetype='text/plain; charset=utf-8')
-LINE_URL = 'https://line.ee/Xf884GI'
+LINE_URL = 'https://lin.ee/qmngoTF'
 
 @app.route('/book')
 def book():
